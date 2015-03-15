@@ -4,7 +4,6 @@ parameters = require '../../parameters.coffee'
 jade = require 'gulp-jade'
 plumber = require 'gulp-plumber'
 rename = require 'gulp-rename'
-rev = require 'gulp-rev'
 templateCache = require 'gulp-angular-templatecache'
 
 # Compile teplates from Jade and inject them in Angular's template cache
@@ -18,8 +17,4 @@ gulp.task 'templates', ->
       filename: parameters.templates_file
       module: parameters.templates_module
       standalone: true
-  .pipe rev()
   .pipe gulp.dest "#{parameters.web_path}/js"
-  .pipe rev.manifest()
-  .pipe rename 'rev-templates.json'
-  .pipe gulp.dest parameters.build_temp_path

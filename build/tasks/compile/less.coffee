@@ -5,7 +5,6 @@ parameters = require '../../parameters.coffee'
 less = require 'gulp-less'
 plumber = require 'gulp-plumber'
 rename = require 'gulp-rename'
-rev = require 'gulp-rev'
 autoprefixer = require 'gulp-autoprefixer'
 
 # Compile LESS files into CSS
@@ -16,8 +15,4 @@ gulp.task 'less', ->
   .pipe autoprefixer
     browsers: ['last 2 versions', 'ie >= 8']
     cascade: false
-  .pipe rev()
   .pipe gulp.dest "#{parameters.web_path}/css"
-  .pipe rev.manifest()
-  .pipe rename 'rev-less.json'
-  .pipe gulp.dest parameters.build_temp_path

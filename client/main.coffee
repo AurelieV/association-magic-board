@@ -4,8 +4,7 @@ angular.module('my-app', [
   'ngSanitize'
   'ui.bootstrap'
   'ui.router'
-  'lbServices'
-  'angularMoment'
+  #'lbServices'
 
   # App submodules
   'my-app.homepage'

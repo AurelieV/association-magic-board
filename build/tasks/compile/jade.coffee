@@ -11,4 +11,4 @@ gulp.task 'jade', ->
   gulp.src "#{parameters.app_path}/*.jade"
   .pipe plumber()
   .pipe jade pretty: true
-  .pipe gulp.dest parameters.build_temp_path
+  .pipe gulp.dest parameters.web_path

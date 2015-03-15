@@ -2,8 +2,6 @@ app_path = 'client'
 web_path = 'www'
 
 config =
-
-  app_route: '/my-app'
   backend_route: '/my-app/api'
 
   app_path: app_path
