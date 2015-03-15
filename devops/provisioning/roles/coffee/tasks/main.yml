@@ -1,0 +1,3 @@
+---
+- name: install globally
+  npm: name=coffee-script global=yes state=latest

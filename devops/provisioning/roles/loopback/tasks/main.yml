@@ -1,0 +1,7 @@
+---
+- name: install build-essential
+  apt:
+    pkg: build-essential
+    state: present
+- name: install globally
+  npm: name=strongloop global=yes state=present
