@@ -7,3 +7,6 @@
   apt:
     pkg: nodejs
     state: present
+
+- name: Npm update
+  npm: name=npm global=yes state=latest

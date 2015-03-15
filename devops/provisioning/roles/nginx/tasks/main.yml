@@ -2,3 +2,13 @@
   apt:
     pkg: nginx
     state: present
+
+- name: set nginx location (subconf)
+  template: src=subconf dest=/etc/nginx/conf.d/my-app.subconf
+
+# TODO add ssl certificate
+#- name: rdirect http to https
+#  template: src=conf dest=/etc/nginx/conf.d/main.conf
+
+- name: restart nginx
+  command: 'service nginx restart'

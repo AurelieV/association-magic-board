@@ -1,0 +1,23 @@
+gulp = require 'gulp'
+path = require 'path'
+parameters = require '../../parameters.coffee'
+
+less = require 'gulp-less'
+plumber = require 'gulp-plumber'
+rename = require 'gulp-rename'
+rev = require 'gulp-rev'
+autoprefixer = require 'gulp-autoprefixer'
+
+# Compile LESS files into CSS
+gulp.task 'less', ->
+  gulp.src parameters.less_main_file
+  .pipe plumber()
+  .pipe less paths: [ path.join(__dirname) ]
+  .pipe autoprefixer
+    browsers: ['last 2 versions', 'ie >= 8']
+    cascade: false
+  .pipe rev()
+  .pipe gulp.dest "#{parameters.web_path}/css"
+  .pipe rev.manifest()
+  .pipe rename 'rev-less.json'
+  .pipe gulp.dest parameters.build_temp_path

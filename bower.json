@@ -1,0 +1,52 @@
+{
+  "name": "loopback-init",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AurelieV/loopback-init",
+  "authors": [
+    "Aurélie VIOLETTE <orwel.violette@gmail.com>"
+  ],
+  "license": "proprietary",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.2.28",
+    "angular-animate": "~1.2.28",
+    "angular-bootstrap": "~0.12.0",
+    "angular-moment": "0.9.x",
+    "angular-resource": "~1.2.28",
+    "angular-translate": "~2.6.0",
+    "angular-translate-interpolation-messageformat": "~2.6.0",
+    "angular-translate-loader-static-files": "~2.6.0",
+    "angular-ui-router": "~0.2.13",
+    "animate.css": "~3.2.0",
+    "bootstrap": "~3.3.2",
+    "components-font-awesome": "~4.3.0",
+    "lodash": "~3.0.0",
+    "async": "~0.9.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less"
+      ],
+      "dependencies": {}
+    },
+    "moment": {
+      "main": [
+        "min/moment-with-locales.min.js"
+      ]
+    },
+    "messageformat": {
+      "main": [
+        "messageformat.js",
+        "locale/en.js",
+        "locale/fr.js"
+      ],
+      "dependencies": {}
+    }
+  }
+}
