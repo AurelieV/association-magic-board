@@ -2,5 +2,16 @@ server {
     listen      80;
     server_name  unsecure;
     ## redirect http to https ##
-    return 301 https://$host$request_uri;
+    #return 301 https://$host$request_uri;
+
+    include /etc/nginx/conf.d/*.subconf;
+}
+
+server {
+    listen      443;
+    #ssl on;
+    server_name  localhost;
+
+    #ssl_certificate      /etc/nginx/ssl/nginx.crt;
+    #ssl_certificate_key  /etc/nginx/ssl/nginx.key;
 }

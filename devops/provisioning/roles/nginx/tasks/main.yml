@@ -3,12 +3,14 @@
     pkg: nginx
     state: present
 
+- name: Erase default nginx site
+  file: path=/etc/nginx/site-enabled/default state=absent
+
 - name: set nginx location (subconf)
   template: src=subconf dest=/etc/nginx/conf.d/my-app.subconf
 
-# TODO add ssl certificate
-#- name: rdirect http to https
-#  template: src=conf dest=/etc/nginx/conf.d/main.conf
+- name: rdirect http to https
+  template: src=conf dest=/etc/nginx/conf.d/secure.conf
 
 - name: restart nginx
   command: 'service nginx restart'

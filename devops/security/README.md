@@ -17,7 +17,7 @@ chmod +x /etc/init.d/firewall
 /etc/init.d/firewall
 update-rc.d firewall defaults
 
-# Scan de port
+# Scan
 apt-get install portsentry
 vi /etc/portsentry/portsentry.conf
 Commentez les lignes KILL_HOSTS_DENY.
@@ -30,3 +30,11 @@ apt-get install fail2ban
 vi /etc/fail2ban/jail.conf
 JAILS changer le port pour ssh
 /etc/init.d/fail2ban restart
+
+# Create certificate
+cd /etc/nginx/ssl
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.cert
+
+# Create htaccess file
+cd /etc/nginx/htpasswd
+htpasswd -b -c /etc/nginx/htpasswd/my-app usr mdp
