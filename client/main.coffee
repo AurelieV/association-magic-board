@@ -1,9 +1,8 @@
 angular.module('my-app', [
   # Vendors
-  'ngAnimate'
-  'ngSanitize'
   'ui.router'
-  #'lbServices'
+  'lbServices'
+  'ngMaterial'
 
   # App submodules
   'my-app.homepage'

@@ -1,16 +1,7 @@
 @bower-components: '../bower_components';
-@bootstrap-path: '@{bower-components}/bootstrap/less';
 
-// Animate.css
-@import (inline) '@{bower-components}/animate.css/animate.min.css';
-
-/* Bootstrap.less */
-@import '@{bootstrap-path}/bootstrap';
-
-/* FontAwesome.less */
-@import '@{bower-components}/components-font-awesome/less/font-awesome.less';
-@fa-font-path: "./fonts";
-@icon-font-path: "./fonts/";
+/* Angular material */
+@import (less) '@{bower-components}/angular-material/angular-material.min.css';
 
 /* Some fix for have no href */
 .nav, .pagination, .carousel, .panel-title a {
@@ -20,7 +11,3 @@
 //App less
 @import 'homepage/styles';
 
-// No display before language loading
-.translate-cloak {
-  display: none;
-}
