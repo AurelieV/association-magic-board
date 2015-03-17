@@ -3,7 +3,6 @@ web_path = 'www'
 
 config =
   backend_route: '/my-app/api'
-
   app_path: app_path
   server_path: 'server'
   web_path: web_path
@@ -18,9 +17,6 @@ config =
   templates_file: 'app.templates.js'
   templates_module: 'my-app.templates'
   vendor_main_file: 'vendor.js'
-  i18n:
-    input_path: "#{app_path}/i18n"
-    output_path: "#{web_path}/i18n"
   fonts:
     input_paths: [
       'bower_components/components-font-awesome/fonts/*'

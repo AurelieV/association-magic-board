@@ -3,7 +3,6 @@ parameters = require '../../parameters.coffee'
 
 jade = require 'gulp-jade'
 plumber = require 'gulp-plumber'
-rename = require 'gulp-rename'
 templateCache = require 'gulp-angular-templatecache'
 
 # Compile teplates from Jade and inject them in Angular's template cache

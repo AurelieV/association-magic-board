@@ -4,7 +4,6 @@ parameters = require '../../parameters.coffee'
 
 less = require 'gulp-less'
 plumber = require 'gulp-plumber'
-rename = require 'gulp-rename'
 autoprefixer = require 'gulp-autoprefixer'
 
 # Compile LESS files into CSS

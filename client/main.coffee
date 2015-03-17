@@ -2,7 +2,6 @@ angular.module('my-app', [
   # Vendors
   'ngAnimate'
   'ngSanitize'
-  'ui.bootstrap'
   'ui.router'
   #'lbServices'
 

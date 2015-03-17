@@ -4,7 +4,6 @@ parameters = require '../../parameters.coffee'
 coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 plumber = require 'gulp-plumber'
-rename = require 'gulp-rename'
 
 # Compile CoffeeScript files to JS
 # `module.coffee` files are treated before others so all the modules are declared before being used
