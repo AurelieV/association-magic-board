@@ -4,6 +4,9 @@ server {
     ## redirect http to https ##
     #return 301 https://$host$request_uri;
 
+    auth_basic "Authentification";
+    auth_basic_user_file /etc/nginx/htpasswd/my-app;
+
     include /etc/nginx/conf.d/*.subconf;
 }
 

@@ -3,7 +3,8 @@
   gather_facts: true
   sudo: yes
   roles:
-    #- nodejs
-    #- coffee
-    #- loopback
+    - nodejs
+    - coffee
+    - loopback
     - nginx
+    - pm2

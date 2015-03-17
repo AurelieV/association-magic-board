@@ -16,5 +16,11 @@ npm install
 ## Run application
 slc run .
 
+## Use pm2
+pm2 startup ubuntu et run le script donné
+pm2 start server.coffee
+
+
+
 
 
