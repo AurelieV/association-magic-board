@@ -4,7 +4,7 @@
     state: present
 
 - name: Erase default nginx site
-  file: path=/etc/nginx/site-enabled/default state=absent
+  file: path=/etc/nginx/sites-enabled/default state=absent
 
 - name: set nginx location (subconf)
   template: src=subconf dest=/etc/nginx/conf.d/my-app.subconf
