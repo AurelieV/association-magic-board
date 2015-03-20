@@ -1,0 +1,24 @@
+{
+  "name": "Member",
+  "plural": "members",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "dci_number": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

@@ -1,2 +1,3 @@
-.screen
-  md-button.md-fab.hero.add-button(aria-label="Add" hero-id="add" ng-click="add()") +
+md-content#members(layout="column" layout-align="center center")
+  .no-members(ng-if="members.length == 0" flex)
+    | Aucun membres

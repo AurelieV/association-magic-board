@@ -1,7 +1,7 @@
 gulp       = require 'gulp'
 parameters = require '../../parameters.coffee'
 rename     = require 'gulp-rename'
-plumber = require 'gulp-plumber'
+plumber    = require 'gulp-plumber'
 
 gulp.task 'lb-services', ->
   gulp.src "#{parameters.backend_main_file}"

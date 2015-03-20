@@ -8,22 +8,26 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "my-app"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "my-app",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "my-app",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "my-app",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "my-app",
     "public": false
+  },
+  "Member": {
+    "dataSource": "my-app",
+    "public": true
   }
 }

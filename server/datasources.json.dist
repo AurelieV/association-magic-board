@@ -1,0 +1,12 @@
+{
+  "my-app": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "my-app",
+    "name": "my-app",
+    "connector": "mongodb",
+    "username": "",
+    "password": ""
+  }
+}
+
