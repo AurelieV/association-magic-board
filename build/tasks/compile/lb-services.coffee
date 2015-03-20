@@ -10,5 +10,3 @@ gulp.task 'lb-services', ->
     apiUrl: "#{parameters.backend_route}"
   .pipe rename 'lb-services.js'
   .pipe gulp.dest "#{parameters.web_path}/js"
-  .once 'end', ->
-    process.exit()
