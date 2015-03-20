@@ -3,6 +3,8 @@ angular.module('my-app', [
   'ui.router'
   'lbServices'
   'ngMaterial'
+  'alAngularHero'
+  'ngAnimate'
 
   # App submodules
   'my-app.homepage'
