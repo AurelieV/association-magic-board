@@ -5,6 +5,6 @@
   roles:
     - nodejs
     - coffee
-    #- loopback
+    - loopback
     - nginx
     - pm2

@@ -15,7 +15,8 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="my-app")
         .md-toolbar-tools
           .title.md-flex My App
       md-content.hero-transition.page-transition(ui-view)
-
+        md-button.md-fab.hero.main-button(aria-label="Add") +
+      
     script(src="js/vendor.js")
     script(src="js/app.templates.js")
     script(src="js/app.js")

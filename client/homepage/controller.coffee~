@@ -37,7 +37,8 @@ angular.module 'my-app.homepage'
 , ($scope, $mdDialog, Member, edit, member) -> 
   $scope.member = angular.copy member if edit
   delete $scope.member.id if edit
-  $scope.isNew = !edit
+  $scope.edit = edit
+  console.log 'esit', edit
   $scope.cancel = ($event)->
     $event.preventDefault()
     $mdDialog.cancel()

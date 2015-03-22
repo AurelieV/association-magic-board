@@ -3,11 +3,11 @@
 #members {
   .members {
     margin: 0 auto;
+    cursor: pointer;
+    &:hover {
+      background: red;
+    }
     md-item {
-      cursor: pointer;
-      &:hover {
-        background: red;
-      }
       .name {
       font-weight: bold;
       }
