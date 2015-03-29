@@ -10,11 +10,13 @@ md-dialog(aria-label="Add dialog")
           input(type="text" required ng-model="member.lastname")
         md-input-container
           label Numéro DCI
-          input(type="text" required ng-model="member.dci_number")
+          input(type="text" name="dci_number" required ng-model="member.dci_number" dci-input)
+          div(ng-messages="add.dci_number.$error" ng-show="add.dci_number.$error.dci_number")
+            div(ng-message="dci_number") Numéro DCI déjà utilisé
         md-input-container
           label Email
           input(type="email" ng-model="member.email")
         .md-action(layout="row" layout-align="right")
           md-button(ng-click="cancel($event)" flex) Annuler
-          md-button.md-primary(ng-click="create($event)" flex ng-if="isNew" ng-disabled="add.$valid") Ajouter  
-          md-button.md-primary(ng-click="edit($event)" flex ng-if="!isNew" ng-disabled="add.$valid") Sauver
+          md-button.md-primary(ng-click="create($event)" flex ng-if="isNew" ng-disabled="!add.$valid") Ajouter  
+          md-button.md-primary(ng-click="edit($event)" flex ng-if="!isNew" ng-disabled="!add.$valid") Sauver

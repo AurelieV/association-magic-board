@@ -18,7 +18,7 @@ angular.module 'my-app.homepage'
           member: null
       .then (member) ->
         $scope.members.push member
-        $mdToast.showSimple "#{member.firstname} #{member.lastname} créé"
+        $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
 
     $scope.edit = ($event, member) ->
       $mdDialog.show
@@ -30,7 +30,7 @@ angular.module 'my-app.homepage'
           edit: true
           member: member
       .then (member) ->
-        $mdToast.showSimple "#{member.firstname} #{member.lastname} éditéé"     
+        $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} édité"     
 
 
 angular.module 'my-app.homepage'
