@@ -15,6 +15,10 @@
     "dci_number": {
       "type": "number",
       "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
