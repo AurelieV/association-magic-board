@@ -10,10 +10,14 @@ angular.module 'my-app.homepage'
               dci_number: modelValue
             limit: 1
         , (members) ->
+          console.log members[0]
+          console.log 'scope.ID', scope.member.id
+          console.log 'member.ID', members[0]?.id
           if members[0] and not (scope.member.id and scope.member.id is members[0].id)
             def.reject()
           else
             def.resolve()
         , (err) ->
+          console.log 'pou'
           def.reject()
         def.promise

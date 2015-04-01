@@ -48,11 +48,14 @@ angular.module 'my-app.homepage'
     , (err) ->
       $mdToast.showSimple "Impossible de créer le membre"
   $scope.edit = ($event) ->
-    delete $scope.member.id if edit
+    delete $scope.member.id
     Member.update {where:{id: member.id}}
     , $scope.member
     , (memberUpdate) ->
-      angular.copy $scope.member, member
-      $mdDialog.hide memberUpdate
+      console.log 'update', memberUpdate
+      id = member.id
+      angular.copy memberUpdate, member
+      member.id = id
+      $mdDialog.hide member
     , (err) ->
       $mdToast.showSimple "Impossible d'éditer le membre" 
