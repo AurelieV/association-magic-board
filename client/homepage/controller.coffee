@@ -1,6 +1,6 @@
 angular.module 'my-app.homepage'
 .controller 'homepageController',
-  ($scope, Member, $mdDialog, $mdToast) ->
+  ($scope, Member, $mdDialog, $mdToast, $state) ->
     Member.find {}
     , (members) ->
       $scope.members = members
@@ -19,8 +19,12 @@ angular.module 'my-app.homepage'
       .then (member) ->
         $scope.members.push member
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
-
+    
     $scope.edit = ($event, member) ->
+     console.log 'pouet' 
+     $state.go 'member', {id:member.id}
+
+    $scope.oldedit = ($event, member) ->
       $mdDialog.show
         templateUrl: 'homepage/add/view.html'
         targetEvent: $event

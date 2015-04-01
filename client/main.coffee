@@ -8,6 +8,7 @@ angular.module('my-app', [
 
   # App submodules
   'my-app.homepage'
+  'my-app.member'
   'my-app.templates'
 ])
 

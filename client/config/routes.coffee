@@ -9,5 +9,9 @@ angular.module 'my-app'
     url: '/'
     controller: 'homepageController'
     templateUrl: 'homepage/view.html'
+  .state 'member',
+    url: '/member/:id'
+    controller: 'memberController'
+    templateUrl: 'member/view.html'
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']
