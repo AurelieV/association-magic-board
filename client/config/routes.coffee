@@ -13,5 +13,8 @@ angular.module 'my-app'
     url: '/member/:id'
     controller: 'memberController'
     templateUrl: 'member/view.html'
+    resolve:
+      member: (memberFactory, $stateParams) ->
+        memberFactory.getMember $stateParams.id
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']
