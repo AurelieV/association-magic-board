@@ -9,12 +9,12 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="my-app")
     meta(name="apple-mobile-web-app-status-bar-style", content="black")
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
 
-  body
-    div(layout="column" flex)
-      md-toolbar
-        .md-toolbar-tools
-          .title.md-flex My App
-      md-content.hero-transition.page-transition(ui-view)
+  body(layout="column")
+    md-toolbar.mainbar
+      .md-toolbar-tools
+        .title.md-flex My App
+    md-content.content(flex md-scroll-y layout="row" layout-align="center")
+      .hero-transition.page-transition(ui-view flex flex-sm="100" flex-md="66" flex-gt-md="66")
 
     script(src="js/vendor.js")
     script(src="js/app.templates.js")
