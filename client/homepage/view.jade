@@ -1,13 +1,12 @@
-#members(layout="row" layout-align="center center" layout-margin)
+md-content#members(layout="row" layout-align="center")
   .no-members(ng-if="members.length == 0")
     | Aucun membres
-  md-list.members(ng-if="members.length > 0" layout="column" layout-align="center" layout-padding="5px" flex-fill flex-sm flex-md="80" flex-lg="50" flex-gt-lg="33")
-    md-item(ng-repeat="member in members | orderBy:['lastname', 'firstname']" flex ng-click="edit($event, member)")
-      md-item-content
-       md-tile-left
-       md-tile-content
-         .name {{ member.lastname | uppercase }} {{ member.firstname }} 
-         .dci-number {{ member.dci_number }}
-
+  md-list.members(ng-if="members.length > 0" flex="100")
+    md-item.md-whiteframe-z1(ng-repeat="member in members track by member.id| orderBy:['lastname', 'firstname']" flex ng-click="select($event, member)")
+      md-item-content(ng-class="{selected:member.id == selectedMember.id}")
+        md-tile-left
+        md-tile-content
+          .name {{ member.lastname | uppercase }} {{ member.firstname }} 
+          .dci-number {{ member.dci_number }}
 md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)") +
       

@@ -1,6 +1,20 @@
 angular.module 'my-app.homepage'
 .controller 'homepageController',
-  ($scope, Member, $mdDialog, $mdToast, $state) ->
+  ($scope, $document, Member, $mdDialog, $mdToast, $state) ->
+    $scope.selectedMember = null
+     
+    select = (member) ->
+      if $scope.selectedMember?.id is member?.id
+        $scope.selectedMember = null
+      else
+        $scope.selectedMember = member
+
+    $document.on 'click', ->
+      $scope.$apply ->
+        select null
+    $scope.$on '$destroy', ->
+      $document.off 'click'
+
     Member.find {}
     , (members) ->
       $scope.members = members
@@ -20,9 +34,9 @@ angular.module 'my-app.homepage'
         $scope.members.push member
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
     
-    $scope.edit = ($event, member) ->
-     console.log 'pouet' 
-     $state.go 'member', {id:member.id}
+    $scope.select = ($event, member) ->
+     $event.stopPropagation()
+     select member
 
     $scope.oldedit = ($event, member) ->
       $mdDialog.show

@@ -19,8 +19,9 @@ body {
   background-color: @background-color;
   .content {
     overflow: auto;
+    background-color: @background-color;
     [ui-view] {
-      overflow: visible;
+      background-color: @background-color;
       .main-button {
         position: fixed;
         //todo: 16px on mobile
