@@ -2,8 +2,8 @@ md-content#members(layout="row" layout-align="center")
   .no-members(ng-if="members.length == 0")
     | Aucun membres
   md-list.members(ng-if="members.length > 0" flex="100")
-    md-item.md-whiteframe-z1(ng-repeat="member in members track by member.id| orderBy:['lastname', 'firstname']" flex ng-click="select($event, member)")
-      md-item-content(ng-class="{selected:member.id == selectedMember.id}")
+    md-item(ng-repeat="member in members track by member.id| orderBy:['lastname', 'firstname']" flex ng-click="select($event, member)")
+      md-item-content(ng-class="{'selected':member.id == selectedMember.id, 'md-whiteframe-z1': member.id != selectedMember.id}")
         md-tile-left
         md-tile-content
           .name {{ member.lastname | uppercase }} {{ member.firstname }} 
