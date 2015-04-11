@@ -4,10 +4,7 @@ angular.module 'my-app.homepage'
     $scope.selectedMember = null
      
     select = (member) ->
-      if $scope.selectedMember?.id is member?.id
-        $scope.selectedMember = null
-      else
-        $scope.selectedMember = member
+      $scope.selectedMember = member
 
     $document.on 'click', ->
       $scope.$apply ->

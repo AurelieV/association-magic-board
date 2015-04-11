@@ -5,6 +5,7 @@ angular.module('my-app', [
   'ngMaterial'
   'alAngularHero'
   'ngAnimate'
+  'ngMdIcons'
 
   # App submodules
   'my-app.homepage'
