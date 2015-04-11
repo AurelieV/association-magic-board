@@ -3,33 +3,56 @@ md-content#members(layout="row" layout-align="center")
     | Aucun membres
   .members(ng-if="members.length > 0" flex="100" layout="column" layout-align="start center" layout-fill)
     .member(
-      ng-repeat="member in members track by member.id| orderBy:['lastname', 'firstname']" 
+      ng-repeat="member in members | orderBy:['lastname', 'firstname']" 
       ng-click="select($event, member)"
       ng-class="{'selected':member.id == selectedMember.id, 'md-whiteframe-z1': member.id != selectedMember.id}"
       flex
     )
-      md-toolbar(ng-show="selectedMember.id == member.id")
-        .md-toolbar-tools
-          md-button.md-icon-button(ng-click="select($event, null)" layout="column" layout-align="center center")
-            ng-md-icon(icon="close", style="fill: white" flex)
-          h2
-            span {{ member.lastname | uppercase }} {{ member.firstname }}
-          span(flex)
-          md-button.md-icon-button(layout="column" layout-align="center center")
-            ng-md-icon(icon="create", style="fill:white" flex)
-      .name(ng-hide="selectedMember.id == member.id") {{ member.lastname | uppercase }} {{ member.firstname }} 
-      .dci-number(ng-hide="selectedMember.id == member.id") {{ member.dci_number }}
-      .information(ng-show="selectedMember.id == member.id" layout="row" layout-fill layout-align="start start" layout-margin)
-        md-whiteframe.md-whiteframe-z1(flex)
-         .dci-number {{ member.dci_number}}
-         .email {{ member.email }}
-        md-whiteframe.md-whiteframe-z1(flex)
-         .dci-number {{ member.dci_number}}
-         .email {{ member.email }}
-        md-whiteframe.md-whiteframe-z1(flex)
-         .dci-number {{ member.dci_number}}
-         .email {{ member.email }}
+      .content(ng-if="selectedMember.id != member.id" flex layout="column" layout-align="start start")
+        .name {{ member.lastname | uppercase }} {{ member.firstname }} 
+        .dci-number {{ member.dci_number }}
 
+
+      .content(ng-if="selectedMember.id == member.id && !isEditing" flex layout="column" layout-align="start start")
+        .header(flex layout="row" layout-align="start center")
+           md-button.md-icon-button(ng-click="select($event, null)" flex)
+             ng-md-icon(icon="close", style="fill: white")
+           span(flex)
+           md-button.md-icon-button(flex ng-click="edit($event, member)")
+            ng-md-icon(icon="create", style="fill:white")
+        .informations(flex layout="column" layout-align="start start")
+          md-whiteframe.md-whiteframe-z1(flex)
+           .dci-number {{ member.dci_number}}
+           .email {{ member.email }}
+          md-whiteframe.md-whiteframe-z1(flex)
+           .dci-number {{ member.dci_number}}
+           .email {{ member.email }}
+          md-whiteframe.md-whiteframe-z1(flex)
+           .dci-number {{ member.dci_number}}
+           .email {{ member.email }}
+
+       .content(ng-if="selectedMember.id == member.id && isEditing" flex layout="column" layout-align="start start")
+        .header(flex layout="row" layout-align="start center")
+           md-button.md-icon-button(ng-click="select($event, null)" flex)
+             ng-md-icon(icon="close", style="fill: white")
+           span(flex)
+           md-button.md-icon-button(flex ng-click="save($event, member)")
+            ng-md-icon(icon="save", style="fill:white")
+        form(name="edit")
+          md-input-container
+            label Prénom
+            input(type="text" required ng-model="editMember.firstname")
+          md-input-container
+            label Nom
+            input(type="text" required ng-model="editMember.lastname")
+          md-input-container
+            label Numéro DCI
+            input(type="text" name="dci_number" required ng-model="editMember.dci_number" dci-input)
+            div(ng-messages="edit.dci_number.$error" ng-show="add.dci_number.$error.dci_number")
+              div(ng-message="dci_number") Numéro DCI déjà utilisé
+          md-input-container
+            label Email
+            input(type="email" ng-model="editMember.email")
 
 md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
   ng-md-icon(icon="add", style="fill: white" flex)

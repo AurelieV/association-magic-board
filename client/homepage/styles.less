@@ -15,6 +15,12 @@
       &:hover {
         background: #f5f5f5;
       }
+      .content {
+        background: white;
+        &:hover {
+          background: #f5f5f5;
+        }
+      }
       margin-bottom: 1px;
       transition: 0.5s linear all;
       width: 80%;
@@ -41,9 +47,18 @@
         &:hover {
           background: @selected-background;
         }
-       md-whiteframe {
-         background: white;
-       }
+        .content {
+          background: @selected-background;
+          &:hover {
+            background: @selected-background;
+          }
+          md-whiteframe {
+            background: white;
+          }
+          .informations {
+            width: 100%;
+          }
+        }
       }  
       .name {
         font-weight: bold;

@@ -2,6 +2,7 @@ angular.module 'my-app.homepage'
 .controller 'homepageController',
   ($scope, $document, Member, $mdDialog, $mdToast, $state) ->
     $scope.selectedMember = null
+    $scope.isEditing = false
      
     select = (member) ->
       $scope.selectedMember = member
@@ -24,9 +25,6 @@ angular.module 'my-app.homepage'
         targetEvent: $event
         clickOutsideToClose: false
         controller: 'addOrEditMemberController'
-        locals:
-          edit: false
-          member: null
       .then (member) ->
         $scope.members.push member
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
@@ -35,24 +33,27 @@ angular.module 'my-app.homepage'
      $event.stopPropagation()
      select member
 
-    $scope.oldedit = ($event, member) ->
-      $mdDialog.show
-        templateUrl: 'homepage/add/view.html'
-        targetEvent: $event
-        clickOutsideToClose: false
-        controller: 'addOrEditMemberController'
-        locals:
-          edit: true
-          member: member
-      .then (member) ->
-        $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} édité"     
+    $scope.edit = ($event, member) ->
+      $scope.isEditing = true
+      $scope.editMember = angular.copy member
+      delete $scope.editMember.id
 
+    $scope.save = ($event, member) ->
+      Member.update {where:{id: member.id}}
+      , $scope.editMember
+      , (memberUpdate) -> 
+        id = member.id
+        angular.copy memberUpdate, member
+        member.id = id
+        $scope.isEditing = false
+        $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} édité"
+      , (err) ->
+        $scope.isEditing = false
+        $mdToast.showSimple "Impossible d'éditer le membre"
 
 angular.module 'my-app.homepage'
 .controller 'addOrEditMemberController'
-, ($scope, $mdDialog, Member, edit, member) -> 
-  $scope.member = angular.copy member if edit
-  $scope.isNew = !edit
+, ($scope, $mdDialog, Member) -> 
   $scope.cancel = ($event)->
     $event.preventDefault()
     $mdDialog.cancel()
@@ -62,15 +63,4 @@ angular.module 'my-app.homepage'
       $mdDialog.hide(member)
     , (err) ->
       $mdToast.showSimple "Impossible de créer le membre"
-  $scope.edit = ($event) ->
-    delete $scope.member.id
-    Member.update {where:{id: member.id}}
-    , $scope.member
-    , (memberUpdate) ->
-      console.log 'update', memberUpdate
-      id = member.id
-      angular.copy memberUpdate, member
-      member.id = id
-      $mdDialog.hide member
-    , (err) ->
-      $mdToast.showSimple "Impossible d'éditer le membre" 
+     
