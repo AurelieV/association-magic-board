@@ -7,6 +7,7 @@ md-content#members(layout="row" layout-align="center")
       ng-click="select($event, member)"
       ng-class="{'selected':member.id == selectedMember.id, 'md-whiteframe-z1': member.id != selectedMember.id}"
       flex
+      id="{{ 'member' + member.id }}"
     )
       .content(ng-if="selectedMember.id != member.id" flex layout="column" layout-align="start start")
         .name {{ member.lastname | uppercase }} {{ member.firstname }} 
@@ -15,28 +16,41 @@ md-content#members(layout="row" layout-align="center")
 
       .content(ng-if="selectedMember.id == member.id && !isEditing" flex layout="column" layout-align="start start")
         .header(flex layout="row" layout-align="start center")
-           md-button.md-icon-button(ng-click="select($event, null)" flex)
+           md-button.md-icon-button(ng-click="select($event, null)")
              ng-md-icon(icon="close", style="fill: white")
            span(flex)
-           md-button.md-icon-button(flex ng-click="edit($event, member)")
+           md-button.md-icon-button(ng-click="edit($event, member)")
             ng-md-icon(icon="create", style="fill:white")
-        .informations(flex layout="column" layout-align="start start")
-          md-whiteframe.md-whiteframe-z1(flex)
-           .dci-number {{ member.dci_number}}
-           .email {{ member.email }}
-          md-whiteframe.md-whiteframe-z1(flex)
-           .dci-number {{ member.dci_number}}
-           .email {{ member.email }}
-          md-whiteframe.md-whiteframe-z1(flex)
-           .dci-number {{ member.dci_number}}
-           .email {{ member.email }}
+        .main-title(flex="100") {{ member.lastname | uppercase }} {{ member.firstname }}
+        .informations(flex="100" layout="row" layout-align="start start" layout-padding layout-wrap)
+          md-whiteframe.md-whiteframe-z1(flex="100")
+           .title Informations
+           .info
+             span.subtitle DCI: 
+             span.value {{ member.dci_number}}
+            .info
+             span.title Email: 
+             span.value {{ member.email }}
+          md-whiteframe.md-whiteframe-z1(flex="100")
+           .title Cotisations
+           .info
+             span.subtitle {{ currentSeason.name }}: 
+             span.value Payé (€)
+           .info
+             span.title Récapitulatif: 
+             span.value(ng-if="member.cotisations.length > 0") span(ng-repeat="cotisation in member.cotisations") {{ cotisation.season.name }}
+          md-whiteframe.md-whiteframe-z1(flex="100")
+           .title Point de ligue
+           .info
+             span.subtitle Saison en cours: 
+             span.value 18pts
 
        .content(ng-if="selectedMember.id == member.id && isEditing" flex layout="column" layout-align="start start")
         .header(flex layout="row" layout-align="start center")
-           md-button.md-icon-button(ng-click="select($event, null)" flex)
+           md-button.md-icon-button(ng-click="select($event, null)")
              ng-md-icon(icon="close", style="fill: white")
            span(flex)
-           md-button.md-icon-button(flex ng-click="save($event, member)")
+           md-button.md-icon-button(ng-click="save($event, member)")
             ng-md-icon(icon="save", style="fill:white")
         form(name="edit")
           md-input-container

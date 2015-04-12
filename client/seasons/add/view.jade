@@ -1,0 +1,16 @@
+md-dialog(aria-label="Add dialog")
+  md-content
+    .dialog-content
+      form(name="add")
+        md-input-container
+          label Nom
+          input(type="text" required ng-model="season.name")
+        md-input-container
+          label Début
+          input(type="date" required ng-model="season.start" placeholder="YYYY-MM-DD")
+        md-input-container
+          label Fin
+          input(type="date" required ng-model="season.end" placeholder="YYYY-MM-DD")
+        .md-action(layout="row" layout-align="right")
+          md-button(ng-click="cancel($event)" flex) Annuler
+          md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter

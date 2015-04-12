@@ -1,0 +1,25 @@
+{
+  "name": "Contribution",
+  "plural": "contributions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "amount": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "member": {
+      "type": "belongsTo",
+      "model": "Member"
+    },
+    "season": {
+      "type": "belongsTo",
+      "model": "Season"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

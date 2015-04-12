@@ -29,5 +29,13 @@
   "Member": {
     "dataSource": "my-app",
     "public": true
+  },
+  "Season": {
+    "dataSource": "my-app",
+    "public": true
+  },
+  "Contribution": {
+    "dataSource": "my-app",
+    "public": true
   }
 }

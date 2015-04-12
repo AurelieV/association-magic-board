@@ -22,7 +22,17 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "contributions": {
+      "type": "hasMany",
+      "model": "Contribution"
+    },
+    "seasons": {
+      "type": "hasMany",
+      "model": "Season",
+      "through": "Contribution"
+    }
+  },
   "acls": [],
   "methods": []
 }

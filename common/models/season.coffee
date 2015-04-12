@@ -1,0 +1,2 @@
+module.exports = (Season) ->
+  return

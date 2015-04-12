@@ -1,23 +1,28 @@
 angular.module 'my-app.homepage'
 .controller 'homepageController',
-  ($scope, $document, Member, $mdDialog, $mdToast, $state) ->
+  ($scope, $document, Member, $mdDialog, $mdToast, $state, $location, $anchorScroll, members, currentSeason) ->
     $scope.selectedMember = null
     $scope.isEditing = false
+    $scope.currentSeason = currentSeason[0]
+
+    scrollToMember = (member) ->
+      return unless member
+      $location.hash('member' + member.id)
+      $anchorScroll()
      
     select = (member) ->
+      return if member?.id is $scope.selectedMember?.id
+      $scope.isEditing = false
       $scope.selectedMember = member
+      scrollToMember member
 
     $document.on 'click', ->
       $scope.$apply ->
         select null
     $scope.$on '$destroy', ->
       $document.off 'click'
-
-    Member.find {}
-    , (members) ->
-      $scope.members = members
-    , (err) ->
-      console.log 'err', err
+    
+    $scope.members = members
 
     $scope.add = ($event) ->
       $mdDialog.show
@@ -27,6 +32,7 @@ angular.module 'my-app.homepage'
         controller: 'addOrEditMemberController'
       .then (member) ->
         $scope.members.push member
+        scrollToMember member
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
     
     $scope.select = ($event, member) ->
@@ -60,7 +66,14 @@ angular.module 'my-app.homepage'
   $scope.create = ($event) ->
     Member.create $scope.member
     , (member) ->
-      $mdDialog.hide(member)
+      if $scope.cotisation
+        member.cotisations.add
+          seasonId: currentSeason.id
+          amount: $scope.contribution
+        , (contribution) ->
+          $mdDialog.hide(member)
+        , (err) ->
+          $mdToast.showSimple "Impossible de créer le membre"    
     , (err) ->
       $mdToast.showSimple "Impossible de créer le membre"
      

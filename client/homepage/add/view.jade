@@ -16,6 +16,9 @@ md-dialog(aria-label="Add dialog")
         md-input-container
           label Email
           input(type="email" ng-model="member.email")
+        md-input-container(ng-if="currentSeason")
+          label Cotisation pour la saison {{ currentSeason.name }} (€)
+          input(type="number" ng-model="cotisation" placeholder="Laissez vide si pas de cotisation")
         .md-action(layout="row" layout-align="right")
           md-button(ng-click="cancel($event)" flex) Annuler
           md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter
