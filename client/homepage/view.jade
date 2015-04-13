@@ -32,15 +32,15 @@ md-content#members(layout="row" layout-align="center")
              span.title Email: 
              span.value {{ member.email }}
           md-whiteframe.md-whiteframe-z1(flex="100")
-           .title Cotisations
+           .title Cotisations (fake)
            .info
              span.subtitle {{ currentSeason.name }}: 
-             span.value Payé (€)
+             span.value Payé 18€
            .info
-             span.title Récapitulatif: 
+             span.title Récapitulatif
              span.value(ng-if="member.cotisations.length > 0") span(ng-repeat="cotisation in member.cotisations") {{ cotisation.season.name }}
           md-whiteframe.md-whiteframe-z1(flex="100")
-           .title Point de ligue
+           .title Point de ligue (fake)
            .info
              span.subtitle Saison en cours: 
              span.value 18pts

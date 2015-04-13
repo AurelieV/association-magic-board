@@ -19,7 +19,7 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="my-app")
             li Saisons
     md-toolbar.mainbar
       .md-toolbar-tools
-        md-button.md-icon-button(ng-click="$root.openMenu()")
+        md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="menu")
           ng-md-icon(icon="menu", style="fill: white")
         .title.md-flex My App 
     md-content.content(flex md-scroll-y layout="row" layout-align="center")

@@ -9,7 +9,10 @@ md-content#seasons(layout="row" layout-align="center")
       .content(flex layout="column" layout-align="start start")
         .name {{ season.name }} 
         .date {{ season.start | date }} - {{ season.end | date }}
-
+        .members
+          ul(ng-if="season.members.length > 0")
+            li(ng-repeat="member in season.members") {{ member.lastname | uppercase }} {{ member.firstname }}
+          span(ng-if="season.members.length == 0") Pas de membre
 md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
   ng-md-icon(icon="add", style="fill: white" flex)
       

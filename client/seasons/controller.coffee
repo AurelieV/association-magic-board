@@ -1,5 +1,5 @@
 angular.module 'my-app.seasons'
-.controller 'seasonsController', ($scope, seasons, $mdDialog) ->
+.controller 'seasonsController', ($scope, seasons, $mdDialog, $mdToast) ->
   $scope.seasons = seasons
 
   $scope.add = ($event) ->
