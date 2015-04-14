@@ -8,8 +8,7 @@ angular.module('my-app', [
   'ngMdIcons'
 
   # App submodules
-  'my-app.homepage'
-  'my-app.member'
+  'my-app.members'
   'my-app.seasons'
   'my-app.templates'
 ])

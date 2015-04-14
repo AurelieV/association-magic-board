@@ -7,8 +7,8 @@ angular.module 'my-app'
   $stateProvider
   .state 'members',
     url: '/'
-    controller: 'homepageController'
-    templateUrl: 'homepage/view.html'
+    controller: 'membersController'
+    templateUrl: 'members/view.html'
     resolve:
       currentSeason: (Season) ->
         Season.find
