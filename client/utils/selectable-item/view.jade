@@ -1,0 +1,6 @@
+div
+  | {{ toto }}
+  h2(ng-if="!isSelected()", ng-click="open()") OPEN
+  h2(ng-if="isSelected()", ng-click="close()") CLOSE
+  p(ng-if="isSelected()") OPEN: {{ element.id }}
+  div(ng-transclude)

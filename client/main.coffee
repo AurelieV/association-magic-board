@@ -11,6 +11,7 @@ angular.module('my-app', [
   'my-app.members'
   'my-app.seasons'
   'my-app.templates'
+  'my-app.utils'
 ])
 .run ($mdSidenav, $rootScope) ->
   $rootScope.openMenu = -> $mdSidenav('left').toggle()

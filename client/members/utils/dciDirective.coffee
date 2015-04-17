@@ -1,4 +1,4 @@
-angular.module 'my-app.homepage'
+angular.module 'my-app.members'
 .directive 'dciInput', ($q, Member) ->
     require: 'ngModel'
     link: (scope, elm, attrs, ctrl) ->

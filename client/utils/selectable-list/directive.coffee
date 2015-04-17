@@ -1,15 +1,7 @@
-angular.module 'my-app.utils.selectableList'
+angular.module 'my-app.utils'
 .directive 'selectableList', () ->
   restric: 'AEC'
   transclude: true
   controller: 'selectableListController'
-  link: ($scope) ->
-    currentSelectedElement = null
-
-    this.select = (element) ->
-      currentSelectedElement = element
-    this.unselect = ->
-      currentSelectedElement = null
-    this.isSelected = (element) ->
-      element is currentSelectedElement
+  template: '<div ng-transclude></div>'
   

@@ -1,4 +1,11 @@
-angular.module 'my-app.utils.selectableList'
+angular.module 'my-app.utils'
 .controller 'selectableListController', () ->
-  this.
+    currentSelectedElement = null
+    this.select = (element) ->
+      console.log 'select ok'
+      currentSelectedElement = element
+    this.unselect = ->
+      currentSelectedElement = null
+    this.isSelected = (element) ->
+      element is currentSelectedElement
 
