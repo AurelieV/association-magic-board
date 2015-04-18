@@ -1,6 +1,8 @@
-div
-  | {{ toto }}
-  h2(ng-if="!isSelected()", ng-click="open()") OPEN
-  h2(ng-if="isSelected()", ng-click="close()") CLOSE
-  p(ng-if="isSelected()") OPEN: {{ element.id }}
-  div(ng-transclude)
+div(
+	ng-click="open($event)"
+	ng-class="{'selected':selected, 'md-whiteframe-z1': !selected}"
+)
+  .header(flex layout="row" layout-align="start center" ng-if="selected")
+    md-button.md-icon-button(ng-click="close($event)" aria-label="Fermer")
+      ng-md-icon(icon="close", style="fill: white")
+  .content(flex layout="column" layout-align="start start")

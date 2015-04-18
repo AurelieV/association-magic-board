@@ -1,7 +1,6 @@
 angular.module 'my-app.members'
 .controller 'membersController',
-  ($scope, $document, Member, $mdDialog, $mdToast, $state, $location, $anchorScroll, currentSeason) ->
-    $scope.selectedMember = null
+  ($scope, Member, $mdDialog, $mdToast, $location, $anchorScroll, currentSeason) ->
     $scope.isEditing = false
     $scope.currentSeason = currentSeason[0]
 
@@ -10,24 +9,7 @@ angular.module 'my-app.members'
       $scope.members = members
     , (err) ->
       $mdToast.showSimple "Impossible d'afficher les membres"
-
-    scrollToMember = (member) ->
-      return unless member
-      $location.hash('member' + member.id)
-      $anchorScroll()
-     
-    select = (member) ->
-      return if member?.id is $scope.selectedMember?.id
-      $scope.isEditing = false
-      $scope.selectedMember = member
-      scrollToMember member
-
-    $document.on 'click', ->
-      $scope.$apply ->
-        select null
-    $scope.$on '$destroy', ->
-      $document.off 'click'
-
+      
     $scope.add = ($event) ->
       $mdDialog.show
         templateUrl: 'members/add/view.html'
@@ -38,12 +20,8 @@ angular.module 'my-app.members'
           currentSeason: $scope.currentSeason
       .then (member) ->
         $scope.members.push member
-        scrollToMember member
+        $location.hash 'member' + member.id
+        $anchorScroll()
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
-    
-    $scope.select = ($event, member) ->
-     $event.stopPropagation()
-     select member
-
 
      

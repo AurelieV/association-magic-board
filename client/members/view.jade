@@ -1,15 +1,23 @@
 md-content#members(layout="row" layout-align="center")
   .no-members(ng-if="members.length == 0")
     | Aucun membres
-  selectable-list.members(ng-if="members.length > 0" flex="100" layout="column" layout-align="start center" layout-fill)
-    selectable-item.member(element="member", ng-repeat="member in members")
-  //  .member(
-  //    ng-repeat="member in members | orderBy:['lastname', 'firstname']"
-  //    ng-click="select($event, member)"
-  //    ng-class="{'selected':member.id == selectedMember.id, 'md-whiteframe-z1': member.id != selectedMember.id}"
-  //    flex
-  //    id="{{ 'member' + member.id }}"
-  //  )
+  selectable-list.members(
+    ng-if="members.length > 0" 
+    flex="100" 
+    layout="column" 
+    layout-align="start center" 
+    layout-fill
+  )
+    selectable-item.member(
+      ng-repeat="member in members | orderBy:['lastname', 'firstname']"
+      flex
+      id="{{ 'member' + member.id }}"
+    )
+      .name {{ member.lastname | uppercase }} {{ member.firstname }}
+      .dci-number {{ member.dci_number }}
+      div TTIT {{ parent.selected }}
+      button(ng-click="parent.close($event)") CLOSE
+
   //    .content(ng-if="selectedMember.id != member.id" flex layout="column" layout-align="start start")
   //      .name {{ member.lastname | uppercase }} {{ member.firstname }}
   //      .dci-number {{ member.dci_number }}
