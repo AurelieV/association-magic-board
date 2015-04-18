@@ -13,16 +13,35 @@ md-content#members(layout="row" layout-align="center")
       flex
       id="{{ 'member' + member.id }}"
     )
-      .name {{ member.lastname | uppercase }} {{ member.firstname }}
-      .dci-number {{ member.dci_number }}
-      div TTIT {{ parent.selected }}
-      button(ng-click="parent.close($event)") CLOSE
+      div(ng-if="!parent.selected")
+        .name {{ member.lastname | uppercase }} {{ member.firstname }}
+        .dci-number {{ member.dci_number }}
+      
+      div(ng-if="parent.selected")
+        .main-title(flex="100") {{ member.lastname | uppercase }} {{ member.firstname }}
+          .informations(flex="100" layout="row" layout-align="start start" layout-padding layout-wrap)
+            md-whiteframe.md-whiteframe-z1(flex="100")
+             .title Informations
+             .info
+               span.subtitle DCI:
+               span.value {{ member.dci_number}}
+              .info
+               span.title Email:
+               span.value {{ member.email }}
+            md-whiteframe.md-whiteframe-z1(flex="100")
+             .title Cotisations (fake)
+             .info
+               span.subtitle {{ currentSeason.name }}:
+               span.value Payé 18€
+             .info
+               span.title Récapitulatif
+               span.value(ng-if="member.cotisations.length > 0") span(ng-repeat="cotisation in member.cotisations") {{ cotisation.season.name }}
+            md-whiteframe.md-whiteframe-z1(flex="100")
+             .title Point de ligue (fake)
+             .info
+               span.subtitle Saison en cours:
+               span.value 18pts
 
-  //    .content(ng-if="selectedMember.id != member.id" flex layout="column" layout-align="start start")
-  //      .name {{ member.lastname | uppercase }} {{ member.firstname }}
-  //      .dci-number {{ member.dci_number }}
-  //
-  //
   //    .content(ng-if="selectedMember.id == member.id && !isEditing" flex layout="column" layout-align="start start")
   //      .header(flex layout="row" layout-align="start center")
   //         md-button.md-icon-button(ng-click="select($event, null)")
@@ -30,29 +49,7 @@ md-content#members(layout="row" layout-align="center")
   //         span(flex)
   //         md-button.md-icon-button(ng-click="edit($event, member)")
   //          ng-md-icon(icon="create", style="fill:white")
-  //      .main-title(flex="100") {{ member.lastname | uppercase }} {{ member.firstname }}
-  //      .informations(flex="100" layout="row" layout-align="start start" layout-padding layout-wrap)
-  //        md-whiteframe.md-whiteframe-z1(flex="100")
-  //         .title Informations
-  //         .info
-  //           span.subtitle DCI:
-  //           span.value {{ member.dci_number}}
-  //          .info
-  //           span.title Email:
-  //           span.value {{ member.email }}
-  //        md-whiteframe.md-whiteframe-z1(flex="100")
-  //         .title Cotisations (fake)
-  //         .info
-  //           span.subtitle {{ currentSeason.name }}:
-  //           span.value Payé 18€
-  //         .info
-  //           span.title Récapitulatif
-  //           span.value(ng-if="member.cotisations.length > 0") span(ng-repeat="cotisation in member.cotisations") {{ cotisation.season.name }}
-  //        md-whiteframe.md-whiteframe-z1(flex="100")
-  //         .title Point de ligue (fake)
-  //         .info
-  //           span.subtitle Saison en cours:
-  //           span.value 18pts
+  //      
   //
   //     .content(ng-if="selectedMember.id == member.id && isEditing" flex layout="column" layout-align="start start")
   //      .header(flex layout="row" layout-align="start center")
