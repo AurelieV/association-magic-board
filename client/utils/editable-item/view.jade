@@ -1,0 +1,7 @@
+div
+  .header(flex layout="row" layout-align="end center")
+    md-button.md-icon-button(ng-click="edit($event)" aria-label="Editer" ng-if="!isEditing")
+      ng-md-icon(icon="edit", style="fill: white")
+    md-button.md-icon-button(ng-click="save($event)" aria-label="Sauvegarder" ng-if="isEditing")
+      ng-md-icon(icon="save", style="fill: white")
+  .content

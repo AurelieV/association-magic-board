@@ -30,7 +30,13 @@ npm install
 pm2 startup ubuntu et run le script donné
 pm2 start my-app.js
 
+## Install strongloop
+sudo npm install -g strongloop
 
+## Build application
+make build-lb-services
+./node_modules/.bin/bower install 
+./node_modules/.bin/gulp build
 
 
 

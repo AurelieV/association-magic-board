@@ -9,7 +9,7 @@ angular.module 'my-app.members'
       $scope.members = members
     , (err) ->
       $mdToast.showSimple "Impossible d'afficher les membres"
-      
+
     $scope.add = ($event) ->
       $mdDialog.show
         templateUrl: 'members/add/view.html'
@@ -24,4 +24,8 @@ angular.module 'my-app.members'
         $anchorScroll()
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
 
-     
+    $scope.save = (editingMember, editableMember) ->
+      console.log 'member', editingMember
+      angular.copy editingMember, editableMember
+
+

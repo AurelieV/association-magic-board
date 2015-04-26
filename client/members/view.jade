@@ -2,10 +2,10 @@ md-content#members(layout="row" layout-align="center")
   .no-members(ng-if="members.length == 0")
     | Aucun membres
   selectable-list.members(
-    ng-if="members.length > 0" 
-    flex="100" 
-    layout="column" 
-    layout-align="start center" 
+    ng-if="members.length > 0"
+    flex="100"
+    layout="column"
+    layout-align="start center"
     layout-fill
   )
     selectable-item.member(
@@ -16,19 +16,37 @@ md-content#members(layout="row" layout-align="center")
       div(ng-if="!parent.selected")
         .name {{ member.lastname | uppercase }} {{ member.firstname }}
         .dci-number {{ member.dci_number }}
-      
+
       div(ng-if="parent.selected")
-        .main-title(flex="100") {{ member.lastname | uppercase }} {{ member.firstname }}
+        .main-title(flex="100" ng-if="!parent.isEditing") {{ member.lastname | uppercase }} {{ member.firstname }}
           .informations(flex="100" layout="row" layout-align="start start" layout-padding layout-wrap)
-            md-whiteframe.md-whiteframe-z1(flex="100")
-             .title Informations
-             .info
-               span.subtitle DCI:
-               span.value {{ member.dci_number}}
-              .info
-               span.title Email:
-               span.value {{ member.email }}
-            md-whiteframe.md-whiteframe-z1(flex="100")
+            editable-item.md-whiteframe-z1(flex="100" save-object="save" editable-object="member")
+              div(ng-if="!parent.isEditing")
+                .title Informations
+                .info
+                  span.subtitle DCI:
+                  span.value {{ member.dci_number }}
+                .info
+                  span.title Email:
+                  span.value {{ member.email }}
+              div(ng-if="parent.isEditing")
+                form(name="edit")
+                  md-input-container
+                    label Prénom
+                    input(type="text" required ng-model="parent.editingObject.firstname")
+                  md-input-container
+                    label Nom
+                    input(type="text" required ng-model="parent.editingObject.lastname")
+                  md-input-container
+                   label Numéro DCI
+                   input(type="text" name="dci_number" required ng-model="parent.editingObject.dci_number" dci-input)
+                   div(ng-messages="edit.dci_number.$error" ng-show="add.dci_number.$error.dci_number")
+                     div(ng-message="dci_number") Numéro DCI déjà utilisé
+                  md-input-container
+                    label Email
+                    input(type="email" ng-model="parent.editingObject.email")
+
+            editable-item.md-whiteframe-z1(flex="100")
              .title Cotisations (fake)
              .info
                span.subtitle {{ currentSeason.name }}:
@@ -36,44 +54,12 @@ md-content#members(layout="row" layout-align="center")
              .info
                span.title Récapitulatif
                span.value(ng-if="member.cotisations.length > 0") span(ng-repeat="cotisation in member.cotisations") {{ cotisation.season.name }}
-            md-whiteframe.md-whiteframe-z1(flex="100")
+            editable-item.md-whiteframe-z1(flex="100")
              .title Point de ligue (fake)
              .info
                span.subtitle Saison en cours:
                span.value 18pts
 
-  //    .content(ng-if="selectedMember.id == member.id && !isEditing" flex layout="column" layout-align="start start")
-  //      .header(flex layout="row" layout-align="start center")
-  //         md-button.md-icon-button(ng-click="select($event, null)")
-  //           ng-md-icon(icon="close", style="fill: white")
-  //         span(flex)
-  //         md-button.md-icon-button(ng-click="edit($event, member)")
-  //          ng-md-icon(icon="create", style="fill:white")
-  //      
-  //
-  //     .content(ng-if="selectedMember.id == member.id && isEditing" flex layout="column" layout-align="start start")
-  //      .header(flex layout="row" layout-align="start center")
-  //         md-button.md-icon-button(ng-click="select($event, null)")
-  //           ng-md-icon(icon="close", style="fill: white")
-  //         span(flex)
-  //         md-button.md-icon-button(ng-click="save($event, member)")
-  //          ng-md-icon(icon="save", style="fill:white")
-  //      form(name="edit")
-  //        md-input-container
-  //          label Prénom
-  //          input(type="text" required ng-model="editMember.firstname")
-  //        md-input-container
-  //          label Nom
-  //          input(type="text" required ng-model="editMember.lastname")
-  //        md-input-container
-  //          label Numéro DCI
-  //          input(type="text" name="dci_number" required ng-model="editMember.dci_number" dci-input)
-  //          div(ng-messages="edit.dci_number.$error" ng-show="add.dci_number.$error.dci_number")
-  //            div(ng-message="dci_number") Numéro DCI déjà utilisé
-  //        md-input-container
-  //          label Email
-  //          input(type="email" ng-model="editMember.email")
-
 md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
   ng-md-icon(icon="add", style="fill: white" flex)
-      
+
