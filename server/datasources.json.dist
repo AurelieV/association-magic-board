@@ -1,9 +1,9 @@
 {
-  "my-app": {
+  "association-magic-board": {
     "host": "localhost",
     "port": 27017,
-    "database": "my-app",
-    "name": "my-app",
+    "database": "association-magic-board",
+    "name": "association-magic-board",
     "connector": "mongodb",
     "username": "",
     "password": ""

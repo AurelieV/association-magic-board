@@ -1,4 +1,4 @@
-angular.module 'my-app.utils'
+angular.module 'association-magic-board.utils'
 .directive 'selectableItem', ($location, $anchorScroll) ->
   restrict: 'AEC'
   templateUrl: 'utils/selectable-item/view.html'

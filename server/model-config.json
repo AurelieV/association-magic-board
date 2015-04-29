@@ -8,34 +8,34 @@
     ]
   },
   "User": {
-    "dataSource": "my-app"
+    "dataSource": "association-magic-board"
   },
   "AccessToken": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": false
   },
   "ACL": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": false
   },
   "Role": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": false
   },
   "Member": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": true
   },
   "Season": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": true
   },
   "Contribution": {
-    "dataSource": "my-app",
+    "dataSource": "association-magic-board",
     "public": true
   }
 }

@@ -1,4 +1,4 @@
-angular.module 'my-app.members'
+angular.module 'association-magic-board.members'
 .controller 'addMemberController'
 , ($scope, $mdDialog, Member, Contribution, currentSeason) ->
   #Init scope

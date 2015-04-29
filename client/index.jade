@@ -1,5 +1,5 @@
 doctype html
-html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="my-app")
+html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="association-magic-board")
   head
     meta(charset="utf-8")
     title My App
@@ -13,7 +13,7 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="my-app")
     md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left")
       md-content
         ul
-          a(ui-sref="members") 
+          a(ui-sref="members")
             li Membres
           a(ui-sref="seasons")
             li Saisons
@@ -21,7 +21,7 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="my-app")
       .md-toolbar-tools
         md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="menu")
           ng-md-icon(icon="menu", style="fill: white")
-        .title.md-flex My App 
+        .title.md-flex My App
     md-content.content(flex md-scroll-y layout="row" layout-align="center")
       .hero-transition.page-transition(ui-view flex flex-sm="100" flex-md="66" flex-gt-md="66")
 

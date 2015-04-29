@@ -1,4 +1,4 @@
-# loopback-init
+# Association magic board
 
 # Installation
 ## Install ansible
@@ -28,14 +28,14 @@ npm install
 
 ## Use pm2
 pm2 startup ubuntu et run le script donné
-pm2 start my-app.js
+pm2 start server.js
 
 ## Install strongloop
 sudo npm install -g strongloop
 
 ## Build application
 make build-lb-services
-./node_modules/.bin/bower install 
+./node_modules/.bin/bower install
 ./node_modules/.bin/gulp build
 
 

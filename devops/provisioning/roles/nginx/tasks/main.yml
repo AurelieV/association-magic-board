@@ -7,7 +7,7 @@
   file: path=/etc/nginx/sites-enabled/default state=absent
 
 - name: set nginx location (subconf)
-  template: src=subconf dest=/etc/nginx/conf.d/my-app.subconf
+  template: src=subconf dest=/etc/nginx/conf.d/association-magic-board.subconf
 
 - name: rdirect http to https
   template: src=conf dest=/etc/nginx/conf.d/secure.conf

@@ -1,3 +1,3 @@
-angular.module 'my-app.members', [
+angular.module 'association-magic-board.members', [
   'ng'
 ]

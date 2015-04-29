@@ -1,4 +1,4 @@
-angular.module 'my-app.members'
+angular.module 'association-magic-board.members'
 .directive 'editMember', (Member) ->
   restrict: 'C'
   templateUrl: 'admin/incident/view.html'

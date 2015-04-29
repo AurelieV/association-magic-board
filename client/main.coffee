@@ -1,4 +1,4 @@
-angular.module('my-app', [
+angular.module('association-magic-board', [
   # Vendors
   'ui.router'
   'lbServices'
@@ -8,10 +8,10 @@ angular.module('my-app', [
   'ngMdIcons'
 
   # App submodules
-  'my-app.members'
-  'my-app.seasons'
-  'my-app.templates'
-  'my-app.utils'
+  'association-magic-board.members'
+  'association-magic-board.seasons'
+  'association-magic-board.templates'
+  'association-magic-board.utils'
 ])
 .run ($mdSidenav, $rootScope) ->
   $rootScope.openMenu = -> $mdSidenav('left').toggle()

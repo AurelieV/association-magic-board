@@ -2,7 +2,7 @@ app_path = 'client'
 web_path = 'www'
 
 config =
-  backend_route: '/my-app/api'
+  backend_route: '/association-magic-board/api'
   app_path: app_path
   server_path: 'server'
   web_path: web_path
@@ -15,7 +15,7 @@ config =
   css_main_file: 'app.css'
   less_main_file: "#{app_path}/app.less"
   templates_file: 'app.templates.js'
-  templates_module: 'my-app.templates'
+  templates_module: 'association-magic-board.templates'
   vendor_main_file: 'vendor.js'
   fonts:
     input_paths: [

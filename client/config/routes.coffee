@@ -1,4 +1,4 @@
-angular.module 'my-app'
+angular.module 'association-magic-board'
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $compileProvider) ->
   $compileProvider.aHrefSanitizationWhitelist /^\s*(mailto|tel|http|https):/
 

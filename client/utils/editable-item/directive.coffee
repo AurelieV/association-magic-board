@@ -1,4 +1,4 @@
-angular.module 'my-app.utils'
+angular.module 'association-magic-board.utils'
 .directive 'editableItem', ->
   restrict: 'AEC'
   templateUrl: 'utils/editable-item/view.html'

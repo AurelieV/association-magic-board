@@ -1,4 +1,4 @@
-angular.module 'my-app.members'
+angular.module 'association-magic-board.members'
 .controller 'membersController',
   ($scope, Member, $mdDialog, $mdToast, $location, $anchorScroll, currentSeason) ->
     $scope.isEditing = false

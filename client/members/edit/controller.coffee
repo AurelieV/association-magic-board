@@ -1,4 +1,4 @@
-angular.module 'my-app.members'
+angular.module 'association-magic-board.members'
 .controller 'editMemberController', ($scope, Member) ->
   $scope.save = ($event, member) ->
     Member.update {where:{id: member.id}}

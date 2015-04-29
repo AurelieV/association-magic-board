@@ -37,4 +37,4 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 
 # Create htaccess file
 cd /etc/nginx/htpasswd
-htpasswd -b -c /etc/nginx/htpasswd/my-app usr mdp
+htpasswd -b -c /etc/nginx/htpasswd/association-magic-board usr mdp

@@ -1,4 +1,4 @@
-angular.module 'my-app.seasons'
+angular.module 'association-magic-board.seasons'
 .controller 'seasonsController', ($scope, seasons, $mdDialog, $mdToast) ->
   $scope.seasons = seasons
 
@@ -12,9 +12,9 @@ angular.module 'my-app.seasons'
       $scope.seasons.push season
       $mdToast.showSimple "#{season.name} créé"
 
-angular.module 'my-app.seasons'
+angular.module 'association-magic-board.seasons'
 .controller 'addSeasonController'
-, ($scope, $mdDialog, Season) -> 
+, ($scope, $mdDialog, Season) ->
   $scope.cancel = ($event)->
     $event.preventDefault()
     $mdDialog.cancel()
@@ -24,5 +24,5 @@ angular.module 'my-app.seasons'
       $mdDialog.hide(season)
     , (err) ->
       $mdToast.showSimple "Impossible de créer la saison"
-  
-     
+
+

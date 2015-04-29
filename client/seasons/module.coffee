@@ -1,3 +1,3 @@
-angular.module 'my-app.seasons', [
+angular.module 'association-magic-board.seasons', [
   'ng'
 ]

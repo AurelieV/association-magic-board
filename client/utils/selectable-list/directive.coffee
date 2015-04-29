@@ -1,4 +1,4 @@
-angular.module 'my-app.utils'
+angular.module 'association-magic-board.utils'
 .directive 'selectableList', () ->
   restric: 'AEC'
   transclude: true
@@ -6,7 +6,7 @@ angular.module 'my-app.utils'
   template: '<div ng-transclude></div>'
   controller: ($scope, $document)->
     @items = []
-     
+
     @select = (element) ->
      for item in @items
        item.selected = false
@@ -18,11 +18,11 @@ angular.module 'my-app.utils'
 
     @addItem = (element) ->
       @items.push element
-       
+
     $document.on 'click', =>
       $scope.$apply =>
         @unselect()
     $scope.$on '$destroy', ->
-      $document.off 'click'   
-      
-  
+      $document.off 'click'
+
+
