@@ -25,7 +25,7 @@ angular.module 'association-magic-board'
       seasons: (Season) ->
         Season.find
           filter:
-            include: 'members'
+            include: ['members', 'contributions']
         .$promise
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']

@@ -4,8 +4,9 @@ angular.module 'association-magic-board.utils'
   templateUrl: 'utils/editable-item/view.html'
   transclude: true
   scope:
-    saveObject: "&"
-    editableObject: "="
+    saveObject: '&'
+    editableObject: '='
+    title: '='
   link: ($scope, el, attrs, ctrls, transclude) ->
     transclude (clone, scope) ->
       scope.parent = $scope

@@ -2,6 +2,12 @@ angular.module 'association-magic-board.seasons'
 .controller 'seasonsController', ($scope, seasons, $mdDialog, $mdToast) ->
   $scope.seasons = seasons
 
+  $scope.totalContributions = (season) ->
+    totalContributions = 0
+    for contribution in season.contributions
+      totalContributions = totalContributions.amount + totalContributions
+    return totalContributions
+
   $scope.add = ($event) ->
     $mdDialog.show
       templateUrl: 'seasons/add/view.html'
@@ -9,6 +15,7 @@ angular.module 'association-magic-board.seasons'
       clickOutsideToClose: false
       controller: 'addSeasonController'
     .then (season) ->
+      season.members = []
       $scope.seasons.push season
       $mdToast.showSimple "#{season.name} créé"
 
