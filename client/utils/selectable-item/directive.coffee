@@ -5,11 +5,7 @@ angular.module 'association-magic-board.utils'
   transclude: true
   scope: {}
   require: '^selectableList'
-  link: ($scope, el, attrs, listCtl, transclude) ->
-    transclude (clone, scope) ->
-      scope.parent = $scope
-      content = angular.element(el[0].querySelector('.content'))
-      content.append clone
+  link: ($scope, el, attrs, listCtl) ->
 
     listCtl.addItem $scope
 

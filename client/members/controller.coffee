@@ -4,7 +4,10 @@ angular.module 'association-magic-board.members'
     $scope.isEditing = false
     $scope.currentSeason = currentSeason[0]
 
-    Member.find {}
+    # TODO: Move to router when homepage will be an other page
+    Member.find
+      filter:
+        include: 'contributions'
     , (members) ->
       $scope.members = members
     , (err) ->
@@ -24,8 +27,17 @@ angular.module 'association-magic-board.members'
         $anchorScroll()
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
 
-    $scope.save = (editingMember, editableMember) ->
-      console.log 'member', editingMember
+    $scope.saveInformations = (editingMember, editableMember) ->
       angular.copy editingMember, editableMember
+
+    $scope.getAmount = (member, season) ->
+      contrib = _.find member.contributions, (contribution) ->
+        contribution.seasonId is season.id
+      return contrib?.amount
+
+    $scope.hasContributed = (member, season) ->
+      contrib = _.find member.contributions, (contribution) ->
+        contribution.seasonId is season.id
+      return contrib?
 
 

@@ -18,9 +18,9 @@ md-content#members(layout="row" layout-align="center")
         .dci-number {{ member.dci_number }}
 
       div(ng-if="parent.selected")
-        .main-title(flex="100" ng-if="!parent.isEditing") {{ member.lastname | uppercase }} {{ member.firstname }}
+        .main-title(flex="100") {{ member.lastname | uppercase }} {{ member.firstname }}
           .informations(flex="100" layout="row" layout-align="start start" layout-padding layout-wrap)
-            editable-item.md-whiteframe-z1(flex="100" save-object="save" editable-object="member" title="'Informations'")
+            editable-item.md-whiteframe-z1(flex="100" save-object="saveInformations" editable-object="member" title="'Informations'")
               div(ng-if="!parent.isEditing")
                 .info
                   span.subtitle DCI:
@@ -45,15 +45,17 @@ md-content#members(layout="row" layout-align="center")
                     label Email
                     input(type="email" ng-model="parent.editingObject.email")
 
-            editable-item.md-whiteframe-z1(flex="100" title="'Cotisations (fake)'")
-             .info(ng-if="currentSeason")
-               span.subtitle {{ currentSeason.name }}:
-               span.value Payé 18€
-             .info
-               span.title Récapitulatif
-               span.value(ng-if="member.cotisations.length > 0")
-                 span(ng-repeat="cotisation in member.cotisations") {{ cotisation.season.name }} ({{ cotisation.amount }})
-               span.value(ng-if="member.cotisations.length == 0")
+            .md-whiteframe-z1(flex="100")
+              .title Cotisation
+              .info(ng-if="currentSeason")
+                
+                span.subtitle {{ currentSeason.name }}:
+                span.value(ng-if="hasContributed(member, currentSeason)") Payé {{ getAmount(member, currentSeason) }} €
+                span.value(ng-if="!hasContributed(member, currentSeason)") Non membre
+              .info
+                span.title Récapitulatif
+                span.value(ng-if="member.contributions.length > 0")
+                  span(ng-repeat="contribution in member.contributions") {{ contribution.season.name }} ({{ contribution.amount }})
 
 md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
   ng-md-icon(icon="add", style="fill: white" flex)

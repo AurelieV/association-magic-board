@@ -16,8 +16,10 @@ angular.module 'association-magic-board.members'
         Contribution.create
           memberId: member.id
           seasonId: currentSeason.id
-          amount: $scope.contribution
+          amount: $scope.contribution.amount
+          date: $scope.contribution.date
         , (contribution) ->
+          member.contributions =  [contribution]
           $mdDialog.hide(member)
         , (err) ->
           $mdToast.showSimple "Impossible d'ajouter la cotisation"
