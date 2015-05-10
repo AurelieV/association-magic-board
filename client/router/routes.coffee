@@ -17,6 +17,30 @@ angular.module 'association-magic-board'
             include: 'members'
           limit: 1
         .$promise
+
+  .state 'members.details',
+    url: 'details/:id'
+    views:
+      'details@members':
+        controller: 'membersDetailsController'
+        templateUrl: 'members/details/view.html'
+    resolve:
+      member: ($stateParams, Member) ->
+        Member.findOne
+          filter:
+            where:
+              id: $stateParams.id
+        .$promise
+      seasons: ($stateParams, Season) ->
+        Season.find
+          filter:
+            include:
+              relation: 'contributions'
+              scope:
+                where:
+                  memberId: $stateParams.id
+        .$promise
+
   .state 'seasons',
     url: '/seasons'
     controller: 'seasonsController'

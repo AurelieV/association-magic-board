@@ -4,24 +4,42 @@
 @import (less) '@{bower-components}/angular-material/angular-material.min.css';
 @import (less) '@{bower-components}/angular-hero/angular-hero.css';
 
+//Font Awesome
+@import '@{bower-components}/components-font-awesome/less/font-awesome.less';
+@fa-font-path: "./fonts";
+@icon-font-path: "./fonts";
+
 /* Some fix for have no href */
-.nav, .pagination, .carousel, .panel-title a {
+.nav, .pagination, .carousel, .panel-title a, [ng-click] {
   cursor: pointer;
 }
+
 @sm-screen: 600px;
 @background-color: #E0E0E0;
 @mainbar-height: 64px;
- 
+
 body {
   max-width: 100%;
   max-height: 100%;
   overflow: hidden;
   background-color: @background-color;
+  .mainbar {
+    .md-button {
+      font-size: 20px;
+      margin-right: 16px;
+    }
+  }
   .content {
-    overflow: auto;
+    overflow: hidden;
     background-color: @background-color;
+    padding: 8px 16px;
+    @media (max-width: @sm-screen) {
+      padding: 8px 0;
+    }
     [ui-view] {
+      overflow: hidden;
       background-color: @background-color;
+      width: 100%;
       .main-button {
         position: fixed;
         //todo: 16px on mobile

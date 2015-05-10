@@ -20,10 +20,10 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="associatio
     md-toolbar.mainbar
       .md-toolbar-tools
         md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="menu")
-          ng-md-icon(icon="menu", style="fill: white")
+          span.fa.fa-bars
         .title.md-flex My App
-    md-content.content(flex md-scroll-y layout="row" layout-align="center")
-      .hero-transition.page-transition(ui-view flex flex-sm="100" flex-md="66" flex-gt-md="66")
+    md-content.content(layout="column")
+      md-content.hero-transition.page-transition(ui-view layout="column")
 
     script(src="js/vendor.js")
     script(src="js/app.templates.js")

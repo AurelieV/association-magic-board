@@ -1,7 +1,6 @@
 angular.module 'association-magic-board.members'
 .controller 'membersController',
-  ($scope, Member, $mdDialog, $mdToast, $location, $anchorScroll, currentSeason) ->
-    $scope.isEditing = false
+  ($scope, Member, $mdDialog, $mdToast, currentSeason, $state, $stateParams, $rootScope) ->
     $scope.currentSeason = currentSeason[0]
 
     # TODO: Move to router when homepage will be an other page
@@ -12,6 +11,9 @@ angular.module 'association-magic-board.members'
       $scope.members = members
     , (err) ->
       $mdToast.showSimple "Impossible d'afficher les membres"
+
+    $scope.goToMember = (member) ->
+      $state.go 'members.details', {id: member.id}
 
     $scope.add = ($event) ->
       $mdDialog.show
@@ -27,17 +29,9 @@ angular.module 'association-magic-board.members'
         $anchorScroll()
         $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
 
-    $scope.saveInformations = (editingMember, editableMember) ->
-      angular.copy editingMember, editableMember
-
-    $scope.getAmount = (member, season) ->
-      contrib = _.find member.contributions, (contribution) ->
-        contribution.seasonId is season.id
-      return contrib?.amount
-
-    $scope.hasContributed = (member, season) ->
-      contrib = _.find member.contributions, (contribution) ->
-        contribution.seasonId is season.id
-      return contrib?
+    $rootScope.$on 'memberUpdated', (event, memberUpdated) ->
+      member = _.find $scope.members, (member) -> member.id is memberUpdated.id
+      return unless member
+      angular.copy memberUpdated, member
 
 

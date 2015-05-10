@@ -5,9 +5,9 @@ angular.module('association-magic-board', [
   'ngMaterial'
   'alAngularHero'
   'ngAnimate'
-  'ngMdIcons'
 
   # App submodules
+  'association-magic-board.member'
   'association-magic-board.members'
   'association-magic-board.seasons'
   'association-magic-board.templates'
@@ -15,6 +15,10 @@ angular.module('association-magic-board', [
 ])
 .run ($mdSidenav, $rootScope) ->
   $rootScope.openMenu = -> $mdSidenav('left').toggle()
+
+  $rootScope.$on '$stateChangeError', (event, toState, toParams, fromState, fromParams, error) ->
+    console.log 'error', error
+    event.preventDefault()
 
 
 

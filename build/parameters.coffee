@@ -20,7 +20,6 @@ config =
   fonts:
     input_paths: [
       'bower_components/components-font-awesome/fonts/*'
-      'bower_components/bootstrap/fonts/*'
     ]
     output_path: "#{web_path}/css/fonts"
 
