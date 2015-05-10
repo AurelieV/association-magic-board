@@ -24,7 +24,7 @@ angular.module 'association-magic-board.member'
     , $scope.editMember
 
   $scope.addContribution = (season) ->
-    $scope.edit.addContribution = true
+    $scope.edit.contribution = true
     season.isAdding = true
     $scope.newContribution =
       date: new Date()
@@ -34,7 +34,7 @@ angular.module 'association-magic-board.member'
     angular.copy season.contributions[0], $scope.editedContribution
     #Cast to date
     $scope.editedContribution.date = new Date $scope.editedContribution.date
-    season.isAdding = true
+    season.isEditing = true
 
   $scope.cancelName = ->
     $scope.edit.name = false
@@ -43,12 +43,12 @@ angular.module 'association-magic-board.member'
     $scope.edit.globalInfo = false
 
   $scope.cancelAddContribution = (season) ->
-    $scope.edit.addContribution = false
+    $scope.edit.contribution = false
     season.isAdding = false
 
   $scope.cancelEditContribution = (season) ->
     $scope.edit.contribution = false
-    season.isAdding = false
+    season.isEditing = false
 
   $scope.saveName = (form) ->
     return unless form.$valid

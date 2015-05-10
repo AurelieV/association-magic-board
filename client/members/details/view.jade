@@ -1,6 +1,6 @@
 #member
-  .header-name(layout="row" ng-if="!edit.name")
-    span.name(flex) {{ member.firstname }} {{ member.lastname | uppercase }}
+  .header-name(layout="row" ng-if="!edit.name" layout-align="start")
+    span.name {{ member.firstname }} {{ member.lastname | uppercase }}
     span.fa.fa-pencil(ng-click="editName()")
   .header-name(ng-if="edit.name")
     form(name="editNameForm" layout="row")
@@ -52,14 +52,14 @@
         .info(ng-repeat="season in seasons | orderBy:'-start'")
           span.subtitle {{ season.name }}:
           span.value(ng-if="season.contributions.length > 0")
-            span {{ season.contributions[0].amount }} € le {{ season.contributions[0].date | date:'dd/MM/yyyy'}}
+            span  {{ season.contributions[0].amount }} € le {{ season.contributions[0].date | date:'dd/MM/yyyy'}}
             md-button.md-button.md-primary.edit-contribution(ng-if="!edit.contribution" ng-click="editContribution(season)" ng-disabled="edit.contribution")
               |  Editer
           span.value(ng-if="season.contributions.length == 0")
-            span Non membre
-            md-button.md-button.md-primary.add-contribution(ng-if="!edit.addContribution" ng-click="addContribution(season)" ng-disabled="edit.addContribution")
+            span  Non membre
+            md-button.md-button.md-primary.add-contribution(ng-if="!edit.contribution" ng-click="addContribution(season)" ng-disabled="edit.addContribution")
               |  Ajouter
-          div(ng-if="edit.addContribution && season.isAdding")
+          div(ng-if="season.isAdding")
             form(name="addContributionForm" layout="row")
               md-input-container.amount(flex)
                 label Montant (€)
@@ -71,7 +71,7 @@
               span(flex)
               md-button.md-button(ng-click="cancelAddContribution(season)") Annuler
               md-button.md-button.md-primary(ng-click="saveAddContribution(addContributionForm, season)" ng-disabled="!addContributionForm.$valid") Enregistrer
-          div(ng-if="edit.contribution && season.isAdding")
+          div(ng-if="season.isEditing")
             form(name="editContributionForm" layout="row")
               md-input-container.amount(flex)
                 label Montant (€)
