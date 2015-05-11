@@ -1,10 +1,56 @@
+@import 'details/styles.less';
+@import 'add/styles.less';
+
 #seasons {
-  .seasons {
-    height: 100%;
-    @media (max-width: @sm-screen) {
-      padding-top: 0px;
-      padding-bottom: 100px;
+  height: inherit;
+  overflow: hidden;
+  background-color: @background-color;
+  .seasons-list {
+    background-color: @background-color;
+    padding: 8px 16px;
+    padding-right: 16px + @arrow-size;
+    max-height: 100%;
+    overflow: auto;
+  }
+  .season {
+    background: white;
+    width: 100%;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-bottom: 1px;
+    &:hover {
+      background: @hover-background;
     }
+    &.first {
+      margin-top: 16px;
+    }
+    &.selected {
+      position: relative;
+      margin: 8px 0;
+      &:after {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-left-color: white;
+        border-width: @arrow-size;
+        margin-top: -@arrow-size;
+      }
+      &.first {
+        margin-top: 16px;
+      }
+      &.last {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .seasons-details {
+    max-height: 100%;
+    overflow: auto;
   }
 }
 

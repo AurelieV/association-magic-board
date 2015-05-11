@@ -1,12 +1,9 @@
 angular.module 'association-magic-board.seasons'
-.controller 'seasonsController', ($scope, seasons, $mdDialog, $mdToast) ->
+.controller 'seasonsController', ($scope, seasons, $mdDialog, $mdToast, $state, $rootScope) ->
   $scope.seasons = seasons
 
-  $scope.totalContributions = (season) ->
-    totalContributions = 0
-    for contribution in season.contributions
-      totalContributions = totalContributions.amount + totalContributions
-    return totalContributions
+  $scope.goToSeason = (season) ->
+    $state.go 'seasons.details', {id: season.id}
 
   $scope.add = ($event) ->
     $mdDialog.show
@@ -19,17 +16,8 @@ angular.module 'association-magic-board.seasons'
       $scope.seasons.push season
       $mdToast.showSimple "#{season.name} créé"
 
-angular.module 'association-magic-board.seasons'
-.controller 'addSeasonController'
-, ($scope, $mdDialog, Season) ->
-  $scope.cancel = ($event)->
-    $event.preventDefault()
-    $mdDialog.cancel()
-  $scope.create = ($event) ->
-    Season.create $scope.season
-    , (season) ->
-      $mdDialog.hide(season)
-    , (err) ->
-      $mdToast.showSimple "Impossible de créer la saison"
-
+  $rootScope.$on 'seasonUpdated', (event, seasonUpdated) ->
+    season = _.find $scope.seasons, (season) -> season.id is seasonUpdated.id
+    return unless season
+    angular.copy seasonUpdated, season
 

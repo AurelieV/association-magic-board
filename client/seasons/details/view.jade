@@ -1,0 +1,54 @@
+#season
+  .header-name(layout="row" ng-if="!edit.name" layout-align="start")
+    span.name {{ season.name }}
+    span.fa.fa-pencil(ng-click="editName()")
+  .header-name(ng-if="edit.name")
+    form(name="editNameForm" layout="row")
+      md-input-container
+        label Nom
+        input(type="text" required ng-model="editedSeason.name")
+    .actions(layout="row")
+      span(flex)
+      md-button.md-button(ng-click="cancelName()") Annuler
+      md-button.md-button.md-primary(ng-click="saveName(editNameForm)" ng-disabled="!editNameForm.$valid") Enregistrer
+
+  .informations
+    .block.md-whiteframe-z1
+      .header-title(layout="row")
+        .title(flex) Informations générales
+      .content(ng-if="!edit.dates")
+        .info
+          span.subtitle Dates
+          span.value  {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
+          span.fa.fa-pencil.edit-dates(ng-click="editDates()")
+        .info
+          span.subtitle Nombre de membres
+          span.value  {{ season.contributions.length }} membres inscrits
+        .info
+          span.subtitle Total des cotisations
+          span.value  {{ totalContributions(season) }} €
+      .content(ng-if="edit.dates")
+        form(name="editDatesForm" layout="row" )
+          md-input-container(flex)
+            label Début
+            input(type="date" required ng-model="editedSeason.start")
+          md-input-container.end(flex)
+            label Fin
+            input(type="date" required ng-model="editedSeason.end")
+        .actions(layout="row")
+          span(flex)
+          md-button.md-button(ng-click="cancelDates()") Annuler
+          md-button.md-button.md-primary(ng-click="saveDates(editDatesForm)" ng-disabled="!editDatesForm.$valid") Enregistrer
+
+
+    .block.md-whiteframe-z1
+      .header-title(layout="row")
+        .title(flex) Membres
+      .content(ng-if="season.contributions.length > 0")
+        .info(ng-repeat="contribution in season.contributions | orderBy:'member.lastname'")
+          span.value()
+            span {{ contribution.member.lastname | uppercase }} {{ contribution.member.firstname }}
+            span  ({{ contribution.amount }} € le {{ contribution.date | date:'dd/MM/yyyy' }})
+      .content(ng-if="season.contributions.length == 0")
+        .info
+          span.value Pas de membres

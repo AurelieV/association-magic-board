@@ -12,11 +12,11 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="associatio
   body(layout="column")
     md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left")
       md-content
-        ul
-          a(ui-sref="members")
-            li Membres
-          a(ui-sref="seasons")
-            li Saisons
+        ul(layout="column" layout-align="start center")
+          li(flex)
+            a(ui-sref="members") Membres
+          li(flex)
+            a(ui-sref="seasons") Saisons
     md-toolbar.mainbar
       .md-toolbar-tools
         md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="menu")

@@ -47,9 +47,24 @@ angular.module 'association-magic-board'
     templateUrl: 'seasons/view.html'
     resolve:
       seasons: (Season) ->
-        Season.find
+        Season.find {}
+        .$promise
+  .state 'seasons.details',
+    url: '/details/:id'
+    views:
+      'details@seasons':
+        controller: 'seasonsDetailsController'
+        templateUrl: 'seasons/details/view.html'
+    resolve:
+      season: (Season, $stateParams) ->
+        Season.findOne
           filter:
-            include: ['members', 'contributions']
+            where:
+              id: $stateParams.id
+            include:
+              relation: 'contributions'
+              scope:
+                include: ['member']
         .$promise
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']
