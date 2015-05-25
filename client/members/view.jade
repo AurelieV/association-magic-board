@@ -9,7 +9,7 @@ md-content#members(layout="row" layout-align="center")
     )
       .search
         input(ng-model="searchText")
-        span.fa.fa-search
+        span.mdi.mdi-magnify
       .member.md-whiteframe-z1(
         ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
         ng-click="goToMember(member)"
@@ -22,5 +22,5 @@ md-content#members(layout="row" layout-align="center")
     md-content.member-details(flex="60" ui-view="details")
       | Sélectionner un membre pour afficher les détails
 
-md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
-  span.fa.fa-user-plus
+md-button.md-fab.main-button(ng-if="!('members.new' | isState)", aria-label="Add", ng-click="add()" layout="column" layout-align="center center")
+  span.mdi.mdi-account-plus

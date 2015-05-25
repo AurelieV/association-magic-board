@@ -1,8 +1,10 @@
 angular.module 'association-magic-board'
-.config ($stateProvider, $urlRouterProvider, $httpProvider, $compileProvider) ->
+.config ($stateProvider, $urlRouterProvider, $httpProvider, $compileProvider, $urlMatcherFactoryProvider) ->
   $compileProvider.aHrefSanitizationWhitelist /^\s*(mailto|tel|http|https):/
 
   $urlRouterProvider.otherwise '/'
+
+  $urlMatcherFactoryProvider.strictMode(false)
 
   $stateProvider
   .state 'members',
@@ -13,9 +15,9 @@ angular.module 'association-magic-board'
       currentSeason: (Season) ->
         Season.find
           filter:
-            orderBy: 'start DESC'
             include: 'members'
-          limit: 1
+            order: 'start DESC'
+            limit: 1
         .$promise
 
   .state 'members.details',
@@ -40,6 +42,12 @@ angular.module 'association-magic-board'
                 where:
                   memberId: $stateParams.id
         .$promise
+  .state 'members.new',
+    url: 'new'
+    views:
+      'details@members':
+        controller: 'membersNewController'
+        templateUrl: 'members/new/view.html'
 
   .state 'seasons',
     url: '/seasons'
@@ -47,7 +55,9 @@ angular.module 'association-magic-board'
     templateUrl: 'seasons/view.html'
     resolve:
       seasons: (Season) ->
-        Season.find {}
+        Season.find
+          filter:
+            order: 'start DESC'
         .$promise
   .state 'seasons.details',
     url: '/details/:id'
@@ -66,5 +76,11 @@ angular.module 'association-magic-board'
               scope:
                 include: ['member']
         .$promise
+  .state 'seasons.new',
+    url: '/new'
+    views:
+      'details@seasons':
+        controller: 'seasonsNewController'
+        templateUrl: 'seasons/new/view.html'
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']

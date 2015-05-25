@@ -19,8 +19,8 @@ config =
   vendor_main_file: 'vendor.js'
   fonts:
     input_paths: [
-      'bower_components/components-font-awesome/fonts/*'
+      'bower_components/mdi/fonts/*'
     ]
-    output_path: "#{web_path}/css/fonts"
+    output_path: "#{web_path}/fonts"
 
 module.exports = config

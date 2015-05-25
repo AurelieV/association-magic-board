@@ -14,11 +14,16 @@ angular.module('association-magic-board', [
   'association-magic-board.utils'
 ])
 .run ($mdSidenav, $rootScope) ->
+  moment.locale 'fr'
+
   $rootScope.openMenu = -> $mdSidenav('left').toggle()
 
   $rootScope.$on '$stateChangeError', (event, toState, toParams, fromState, fromParams, error) ->
     console.log 'error', error
     event.preventDefault()
+
+  $rootScope.$on '$stateChangeSuccess', (event) ->
+    $mdSidenav('left').close()
 
 
 

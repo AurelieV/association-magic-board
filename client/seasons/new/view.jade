@@ -1,0 +1,11 @@
+#new-season
+  md-content.body.md-whiteframe-z1(flex)
+    form(name="add")
+      md-input-container
+        label Nom
+        input(type="text" required ng-model="season.name")
+      mdc-date-picker(model="season.start" label="Début")
+      mdc-date-picker(model="season.end" label="Fin")
+      .md-action(layout="row" layout-align="right")
+        md-button(ng-click="cancel($event)" flex) Annuler
+        md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter

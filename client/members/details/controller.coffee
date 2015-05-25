@@ -1,7 +1,6 @@
 angular.module 'association-magic-board.member'
-.controller 'membersDetailsController', ($scope, currentSeason, member, Member, $rootScope, Contribution, seasons) ->
+.controller 'membersDetailsController', ($scope, member, Member, $rootScope, Contribution, seasons, $mdToast) ->
   $scope.member = member
-  $scope.currentSeason = currentSeason[0]
   $scope.seasons = seasons
 
   $scope.edit =

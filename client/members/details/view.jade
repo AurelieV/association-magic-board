@@ -1,27 +1,26 @@
 #member
   .header-name(layout="row" ng-if="!edit.name" layout-align="start")
-    span.name {{ member.firstname }} {{ member.lastname | uppercase }}
-    span.fa.fa-pencil(ng-click="editName()")
+    span.name {{ member.lastname | uppercase }} {{ member.firstname }}
+    span.mdi.mdi-pencil(ng-click="editName()")
   .header-name(ng-if="edit.name")
     form(name="editNameForm" layout="row")
       md-input-container(flex)
-        label Prénom
-        input(type="text" required ng-model="editMember.firstname")
-      md-input-container(flex)
         label Nom
         input(type="text" required ng-model="editMember.lastname")
+      md-input-container(flex)
+        label Prénom
+        input(type="text" required ng-model="editMember.firstname")
     .actions(layout="row")
       span(flex)
       md-button.md-button(ng-click="cancelName()") Annuler
       md-button.md-button.md-primary(ng-click="saveName(editNameForm)" ng-disabled="!editNameForm.$valid") Enregistrer
-
 
   .informations(flex="100" layout="column" layout-align="center start")
     .block.md-whiteframe-z1
       .header-title(layout="row")
         .title(flex) Informations générales
         .actions(ng-if="!edit.globalInfo")
-          span.fa.fa-pencil(ng-click="editGlobalInfo()")
+          span.mdi.mdi-pencil(ng-click="editGlobalInfo()")
       .content(ng-if="!edit.globalInfo")
         .info
           span.subtitle DCI:
@@ -50,7 +49,8 @@
         .title(flex) Informations générales
       .content
         .info(ng-repeat="season in seasons | orderBy:'-start'")
-          span.subtitle {{ season.name }}:
+          span.subtitle
+            a.no-style(ui-sref="seasons.details({id: season.id})") {{ season.name }}:
           span.value(ng-if="season.contributions.length > 0")
             span  {{ season.contributions[0].amount }} € le {{ season.contributions[0].date | date:'dd/MM/yyyy'}}
             md-button.md-button.md-primary.edit-contribution(ng-if="!edit.contribution" ng-click="editContribution(season)" ng-disabled="edit.contribution")
@@ -64,9 +64,7 @@
               md-input-container.amount(flex)
                 label Montant (€)
                 input(type="number" ng-model="newContribution.amount" required)
-              md-input-container.date(flex)
-                label Date
-                input(type="date" ng-model="newContribution.date" required)
+              mdc-date-picker.date(flex model="newContribution.date" label="Date")
             .actions(layout="row")
               span(flex)
               md-button.md-button(ng-click="cancelAddContribution(season)") Annuler
@@ -76,9 +74,7 @@
               md-input-container.amount(flex)
                 label Montant (€)
                 input(type="number" ng-model="editedContribution.amount" required)
-              md-input-container.date(flex)
-                label Date
-                input(type="date" ng-model="editedContribution.date" required)
+              mdc-date-picker(flex model="editedContribution.date" label="Date").date
             .actions(layout="row")
               span(flex)
               md-button.md-button(ng-click="cancelEditContribution(season)") Annuler

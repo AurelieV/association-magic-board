@@ -1,7 +1,7 @@
 #season
   .header-name(layout="row" ng-if="!edit.name" layout-align="start")
     span.name {{ season.name }}
-    span.fa.fa-pencil(ng-click="editName()")
+    span.mdi.mdi-pencil(ng-click="editName()")
   .header-name(ng-if="edit.name")
     form(name="editNameForm" layout="row")
       md-input-container
@@ -20,7 +20,7 @@
         .info
           span.subtitle Dates
           span.value  {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
-          span.fa.fa-pencil.edit-dates(ng-click="editDates()")
+          span.mdi.mdi-pencil.edit-dates(ng-click="editDates()")
         .info
           span.subtitle Nombre de membres
           span.value  {{ season.contributions.length }} membres inscrits
@@ -29,12 +29,8 @@
           span.value  {{ totalContributions(season) }} €
       .content(ng-if="edit.dates")
         form(name="editDatesForm" layout="row" )
-          md-input-container(flex)
-            label Début
-            input(type="date" required ng-model="editedSeason.start")
-          md-input-container.end(flex)
-            label Fin
-            input(type="date" required ng-model="editedSeason.end")
+          mdc-date-picker(flex model="editedSeason.start" label="Début")
+          mdc-date-picker(flex model="editedSeason.end" label="Fin").end
         .actions(layout="row")
           span(flex)
           md-button.md-button(ng-click="cancelDates()") Annuler
@@ -46,8 +42,9 @@
         .title(flex) Membres
       .content(ng-if="season.contributions.length > 0")
         .info(ng-repeat="contribution in season.contributions | orderBy:'member.lastname'")
-          span.value()
-            span {{ contribution.member.lastname | uppercase }} {{ contribution.member.firstname }}
+          span.value
+            a.no-style(ui-sref="members.details({id: contribution.member.id })")
+              | {{ contribution.member.lastname | uppercase }} {{ contribution.member.firstname }}
             span  ({{ contribution.amount }} € le {{ contribution.date | date:'dd/MM/yyyy' }})
       .content(ng-if="season.contributions.length == 0")
         .info

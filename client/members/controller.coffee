@@ -1,6 +1,6 @@
 angular.module 'association-magic-board.members'
 .controller 'membersController',
-  ($scope, Member, $mdDialog, $mdToast, currentSeason, $state, $stateParams, $rootScope) ->
+  ($scope, Member, currentSeason, $state) ->
     $scope.currentSeason = currentSeason[0]
 
     # TODO: Move to router when homepage will be an other page
@@ -15,23 +15,15 @@ angular.module 'association-magic-board.members'
     $scope.goToMember = (member) ->
       $state.go 'members.details', {id: member.id}
 
-    $scope.add = ($event) ->
-      $mdDialog.show
-        templateUrl: 'members/add/view.html'
-        targetEvent: $event
-        clickOutsideToClose: false
-        controller: 'addMemberController'
-        locals:
-          currentSeason: $scope.currentSeason
-      .then (member) ->
-        $scope.members.push member
-        $location.hash 'member' + member.id
-        $anchorScroll()
-        $mdToast.showSimple "#{member.firstname} #{member.lastname.toUpperCase()} créé"
+    $scope.add = ->
+      $state.go 'members.new'
 
-    $rootScope.$on 'memberUpdated', (event, memberUpdated) ->
+    $scope.$on 'memberUpdated', (event, memberUpdated) ->
       member = _.find $scope.members, (member) -> member.id is memberUpdated.id
       return unless member
       angular.copy memberUpdated, member
+
+    $scope.$on 'memberAdded', (event, memberAdded) ->
+      $scope.members.push memberAdded
 
 
