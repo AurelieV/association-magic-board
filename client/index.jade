@@ -2,7 +2,8 @@ doctype html
 html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="association-magic-board")
   head
     meta(charset="utf-8")
-    title My App
+    title Association Magic Board
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     link(href="css/app.css", rel="stylesheet")
     meta(name="viewport", content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     meta(name="apple-mobile-web-app-capable", content="yes")
@@ -19,9 +20,9 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="associatio
             a(ui-sref="seasons") Saisons
     md-toolbar.mainbar
       .md-toolbar-tools
-        md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="menu")
-          span.mdi.mdi-menu
-        .title.md-flex My App
+        md-button.md-icon-button(ng-click="$root.openMenu()")
+          md-icon.material-icons(md-font-icon="icon-menu")
+        .title.md-flex Association Magic Board
     md-content.content(layout="column")
       md-content.hero-transition.page-transition(ui-view layout="column")
 

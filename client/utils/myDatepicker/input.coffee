@@ -1,4 +1,4 @@
-angular.module 'association-magic-board.utils'
+angular.module 'association-magic-board'
 .controller 'myDatepickerInputController', ($scope, $attrs, $timeout, $mdDialog) ->
   if angular.isDefined($scope.model)
     $scope.selected =

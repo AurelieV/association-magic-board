@@ -1,12 +1,8 @@
 @bower-components: '../bower_components';
 
 /* Angular material */
-@import (less) '@{bower-components}/angular-material/angular-material.min.css';
+@import (less) '@{bower-components}/angular-material/angular-material.css';
 @import (less) '@{bower-components}/angular-hero/angular-hero.css';
-
-
-//Material design
-@import (inline) '@{bower-components}/mdi/css/materialdesignicons.css';
 
 /* Some fix for have no href */
 .nav, .pagination, .carousel, .panel-title a, [ng-click] {
@@ -28,10 +24,6 @@ body {
     color: inherit;
   }
   .mainbar {
-    .md-button {
-      font-size: 20px;
-      margin-right: 16px;
-    }
   }
   .content {
     overflow: hidden;
@@ -80,6 +72,10 @@ body {
       }
     }
   }
+}
+
+.icon-menu:before {
+  content: "\E5D2"
 }
 
 

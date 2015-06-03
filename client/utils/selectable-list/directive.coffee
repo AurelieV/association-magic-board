@@ -1,4 +1,4 @@
-angular.module 'association-magic-board.utils'
+angular.module 'association-magic-board'
 .directive 'selectableList', () ->
   restric: 'AEC'
   transclude: true

@@ -1,4 +1,4 @@
-angular.module 'association-magic-board.utils'
+angular.module 'association-magic-board'
 .controller 'myDatepickerController', ($scope, $timeout, $mdDialog, $document, model, locale, mdTheme) ->
   checkLocale = (locale) ->
     if !locale

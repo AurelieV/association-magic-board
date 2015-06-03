@@ -1,4 +1,4 @@
-angular.module 'association-magic-board.seasons'
+angular.module 'association-magic-board'
 .controller 'seasonsController', ($scope, seasons, $mdToast, $state) ->
   $scope.seasons = seasons
 

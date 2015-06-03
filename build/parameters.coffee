@@ -17,10 +17,5 @@ config =
   templates_file: 'app.templates.js'
   templates_module: 'association-magic-board.templates'
   vendor_main_file: 'vendor.js'
-  fonts:
-    input_paths: [
-      'bower_components/mdi/fonts/*'
-    ]
-    output_path: "#{web_path}/fonts"
 
 module.exports = config

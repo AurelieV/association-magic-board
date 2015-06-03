@@ -1,4 +1,4 @@
-angular.module 'association-magic-board.member'
+angular.module 'association-magic-board'
 .directive 'dciInput', ($q, Member) ->
     require: 'ngModel'
     link: (scope, elm, attrs, ctrl) ->

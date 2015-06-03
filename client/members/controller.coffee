@@ -1,4 +1,4 @@
-angular.module 'association-magic-board.members'
+angular.module 'association-magic-board'
 .controller 'membersController',
   ($scope, Member, currentSeason, $state) ->
     $scope.currentSeason = currentSeason[0]
