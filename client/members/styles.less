@@ -3,35 +3,29 @@
 
 @arrow-size: 8px;
 #members {
-  height: inherit;
+  height: 100%;
   overflow: hidden;
   background-color: @background-color;
   .members-list {
     background-color: @background-color;
     padding-right: 16px + @arrow-size;
-    max-height: 100%;
-    overflow: auto;
+    height: 100%;
+    overflow: hidden;
     .search {
-      width: 100%;
-      height: 20px;
-      span {
-        margin-left: -20px;
-      }
-      input {
-        width: 100%;
-      }
+      height: 24px;
+      padding-right: 20px;
+    }
+    md-list {
+      overflow: auto;
+      padding-right: 20px;
     }
     .member {
       background: white;
-      width: 100%;
-      padding: 8px 16px;
       cursor: pointer;
       margin-bottom: 1px;
-      &:hover {
-        background: @hover-background;
-      }
-      &.first {
-        margin-top: 16px;
+      .md-list-item-inner {
+        padding-top: 4px;
+        padding-bottom: 4px;
       }
       &.selected {
         position: relative;
@@ -50,7 +44,7 @@
           margin-top: -@arrow-size;
         }
         &.first {
-          margin-top: 16px;
+          margin-top: 0;
         }
         &.last {
           margin-bottom: 0;
@@ -68,5 +62,6 @@
   .member-details {
     max-height: 100%;
     overflow: auto;
+    background-color: @background-color;
   }
 }

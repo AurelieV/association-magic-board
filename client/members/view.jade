@@ -1,26 +1,27 @@
-md-content#members(layout="row" layout-align="center")
+#members(layout="row" layout-align="center")
     md-content.no-members(ng-if="members.length == 0" flex)
       | Aucun membres
     md-content.members-list(
       flex="40"
       ng-if="members.length > 0"
       layout="column"
-      layout-align="start center"
     )
-      .search
+      md-input-container.search.md-no-float
+        md-icon.material-icons(md-font-icon="icon-search")
         input(ng-model="searchText")
-        span.mdi.mdi-magnify
-      .member.md-whiteframe-z1(
-        ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
-        ng-click="goToMember(member)"
-        ui-sref-active="selected"
-        ui-sref=".details({id: member.id})"
-        ng-class="{'first': $first, 'last': $last}"
-      )
-        .name {{ member.lastname | uppercase }} {{ member.firstname }}
-        .dci-number {{ member.dci_number }}
+      md-list(flex)
+        md-list-item.member.md-whiteframe-z1(
+          ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
+          ng-click="goToMember(member)"
+          ui-sref-active="selected"
+          ui-sref=".details({id: member.id})"
+          ng-class="{'first': $first, 'last': $last}"
+        )
+          .md-list-item-text
+            .name {{ member.lastname | uppercase }} {{ member.firstname }}
+            .dci-number {{ member.dci_number }}
     md-content.member-details(flex="60" ui-view="details")
       | Sélectionner un membre pour afficher les détails
 
 md-button.md-fab.main-button(ng-if="!('members.new' | isState)", aria-label="Add", ng-click="add()" layout="column" layout-align="center center")
-  span.mdi.mdi-account-plus
+  md-icon.material-icons(md-font-icon="icon-person-add")
