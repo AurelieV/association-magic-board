@@ -1,27 +1,27 @@
-#new-member
-  md-content.body.md-whiteframe-z1(flex)
-    form(name="add")
-      md-input-container
-        label Prénom
-        input(type="text" required ng-model="member.firstname")
-      md-input-container
-        label Nom
-        input(type="text" required ng-model="member.lastname")
-      md-input-container
-        label Numéro DCI
-        input(type="text" name="dci_number" required ng-model="member.dci_number" dci-input)
-        div(ng-messages="add.dci_number.$error" ng-show="add.dci_number.$error.dci_number")
-          div(ng-message="dci_number") Numéro DCI déjà utilisé
-      md-input-container
-        label Email
-        input(type="email" ng-model="member.email")
-      div(ng-if="currentSeason")
-        label Cotisation pour {{ currentSeason.name }}?
-        .contribution(layout="row" layout-fill)
-          md-input-container.amount(flex)
-            label Montant (€)
-            input(type="number" ng-model="contribution.amount")
-          mdc-date-picker(flex model="contribution.date" label="Date")
-      .md-action(layout="row" layout-align="right")
-        md-button(ng-click="cancel($event)" flex) Annuler
-        md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter
+#new-member.md-whiteframe-z1
+  form(name="add")
+    button(style="display:none;")
+    md-input-container
+      label Prénom
+      input(type="text" required ng-model="member.firstname")
+    md-input-container
+      label Nom
+      input(type="text" required ng-model="member.lastname")
+    md-input-container
+      label Numéro DCI
+      input(type="text" name="dci_number" required ng-model="member.dci_number" dci-input)
+      div(ng-messages="add.dci_number.$error" ng-show="add.dci_number.$error.dci_number")
+        div(ng-message="dci_number") Numéro DCI déjà utilisé
+    md-input-container
+      label Email
+      input(type="email" ng-model="member.email")
+    div(ng-if="currentSeason")
+      label Cotisation pour {{ currentSeason.name }}?
+      .contribution(layout="row" layout-fill)
+        md-input-container.amount(flex)
+          label Montant (€)
+          input(type="number" ng-model="contribution.amount")
+        mdc-date-picker(flex model="contribution.date" label="Date")
+    .md-action(layout="row" layout-align="right")
+      md-button(ng-click="cancel($event)" flex) Annuler
+      md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter
