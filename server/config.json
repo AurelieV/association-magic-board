@@ -1,8 +1,8 @@
 {
   "restApiRoot": "/api",
   "host": "0.0.0.0",
-  "port": 3000,
-  "url": "http://localhost:8888/association-magic-board",
+  "port": 8888,
+  "url": "http://localhost:8888",
   "aclErrorStatus": 403,
   "legacyExplorer": false,
   "remoting": {

@@ -21,8 +21,8 @@
   "relations": {
     "members": {
       "type": "hasMany",
-      "through": "Contribution",
-      "model": "Member"
+      "model": "Member",
+      "through": "Contribution"
     },
     "contributions": {
       "type": "hasMany",
