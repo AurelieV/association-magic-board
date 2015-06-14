@@ -2,6 +2,7 @@ angular.module 'association-magic-board'
 .controller 'membersController',
   ($scope, Member, currentSeason, $state) ->
     $scope.currentSeason = currentSeason[0]
+    $scope.$state = $state
 
     # TODO: Move to router when homepage will be an other page
     Member.find

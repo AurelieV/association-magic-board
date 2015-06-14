@@ -11,6 +11,9 @@ angular.module 'association-magic-board'
     url: '/'
     controller: 'membersController'
     templateUrl: 'members/view.html'
+    data:
+      listSizeSm: 100
+      detailsSizeSm: 0
     resolve:
       currentSeason: (Season) ->
         Season.find
@@ -26,6 +29,9 @@ angular.module 'association-magic-board'
       'details@members':
         controller: 'membersDetailsController'
         templateUrl: 'members/details/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
     resolve:
       member: ($stateParams, Member) ->
         Member.findOne

@@ -1,28 +1,29 @@
 #members(layout="row" layout-align="center")
-    md-content.no-members(ng-if="members.length == 0" flex)
-      | Aucun membres
-    md-content.members-list(
-      flex="40"
-      ng-if="members.length > 0"
-      layout="column"
-    )
-      md-input-container.search.md-no-float
-        md-icon.material-icons(md-font-icon="icon-search" aria-label="search")
-        input(ng-model="searchText" aria-label="searchInput")
-      md-list(flex)
-        md-list-item.member.md-whiteframe-z1(
-          ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
-          ng-click="goToMember(member)"
-          ui-sref-active="selected"
-          ui-sref=".details({id: member.id})"
-          ng-class="{'first': $first, 'last': $last}"
-        )
-          .md-list-item-text
-            .name {{ member.lastname | uppercase }} {{ member.firstname }}
-            .dci-number {{ member.dci_number }}
+  md-content.no-members(ng-if="members.length == 0" flex-gt-sm="40" flex-sm="{{ $state.current.data.listSizeSm }}")
+    | Aucun membres
+  md-content.members-list(
+    flex-sm="{{ $state.current.data.listSizeSm }}"
+    flex-gt-sm="40"
+    ng-if="members.length > 0"
+    layout="column"
+  )
+    md-input-container.search.md-no-float
+      md-icon.material-icons(md-font-icon="icon-search" aria-label="search")
+      input(ng-model="searchText" aria-label="searchInput")
+    md-list(flex)
+      md-list-item.member.md-whiteframe-z1(
+        ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
+        ng-click="goToMember(member)"
+        ui-sref-active="selected"
+        ui-sref=".details({id: member.id})"
+        ng-class="{'first': $first, 'last': $last}"
+      )
+        .md-list-item-text
+          .name {{ member.lastname | uppercase }} {{ member.firstname }}
+          .dci-number {{ member.dci_number }}
 
-    md-content.member-details(flex="60" ui-view="details")
-      | Sélectionner un membre pour afficher les détails
+  md-content.member-details(flex-gt-sm="60" ui-view="details" flex-sm="{{ $state.current.data.detailsSizeSm }}")
+    | Sélectionner un membre pour afficher les détails
 
 md-button.md-fab.main-button(ng-if="!('members.new' | isState)", aria-label="Add", ng-click="add()" layout="column" layout-align="center center")
   md-icon.material-icons(md-font-icon="icon-person-add")

@@ -16,10 +16,19 @@
     .search {
       height: 24px;
       padding-right: 16px + @arrow-size;
+      @media (max-width: @sm-screen) {
+        padding-right: 4px;
+        padding-left: 4px;
+      }
     }
     md-list {
       overflow: auto;
       padding-right: 16px + @arrow-size;
+      @media (max-width: @sm-screen) {
+        padding-right: 4px;
+        padding-left: 4px;
+        padding-bottom: 75px;
+      }
     }
     .member {
       background: white;
@@ -66,5 +75,10 @@
     max-height: 100%;
     overflow: auto;
     background-color: @background-color;
+    @media (max-width: @sm-screen) {
+      padding-right: 0;
+      padding-left: 0;
+      padding-bottom: 75px;
+    }
   }
 }

@@ -1,7 +1,10 @@
 angular.module 'association-magic-board'
-.controller 'membersDetailsController', ($scope, member, Member, $rootScope, Contribution, seasons, $mdToast) ->
+.controller 'membersDetailsController', ($scope, member, Member, $rootScope, Contribution, seasons, $mdToast, $state) ->
   $scope.member = member
   $scope.seasons = seasons
+
+  $scope.back = ->
+    $state.go 'members'
 
   $scope.edit =
     name: false
