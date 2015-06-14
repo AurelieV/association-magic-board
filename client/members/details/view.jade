@@ -4,7 +4,7 @@
     md-icon.material-icons(md-font-icon="icon-create" ng-click="editName()" ng-if="!underModification")
     .push(flex)
   .header-name(ng-if="edit.name")
-    form(name="editNameForm" layout="row")
+    form(name="editNameForm" layout="row" novalidate)
       md-input-container(flex)
         label Nom
         input(type="text" required ng-model="editedMember.lastname")
@@ -31,7 +31,7 @@
           span.value(ng-if="member.email")  {{ member.email }}
           span.value(ng-if="!member.email")  Pas de mail renseigné
       .content(ng-if="edit.globalInfo")
-        form(name="editGlobalInfoForm")
+        form(name="editGlobalInfoForm" novalidate)
           md-input-container
             label Numéro DCI
             input(type="text" name="dci_number" required ng-model="editedMember.dci_number" dci-input)
@@ -57,7 +57,7 @@
             .push(flex)
             md-icon.material-icons(md-font-icon="icon-create" ng-click="editContribution(season)" ng-if="!underModification")
             div(ng-if="season.isEditing" flex="100")
-             form(name="editContributionForm" layout="row")
+             form(name="editContributionForm" layout="row" novalidate)
                md-input-container.amount(flex)
                  label Montant (€)
                  input(type="number" ng-model="editedContribution.amount" required)
@@ -74,7 +74,7 @@
             .push(flex)
             md-icon.material-icons(md-font-icon="icon-add" ng-click="addContribution(season)" ng-if="!underModification")
             div(ng-if="season.isAdding" flex="100")
-              form(name="addContributionForm" layout="row")
+              form(name="addContributionForm" layout="row" novalidate)
                 md-input-container.amount(flex)
                   label Montant (€)
                   input(type="number" ng-model="newContribution.amount" required)

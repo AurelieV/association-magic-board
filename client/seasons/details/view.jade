@@ -4,7 +4,7 @@
     md-icon.material-icons(md-font-icon="icon-create" ng-click="editName()" ng-if="!underModification")
     .push(flex)
   .header-name(ng-if="edit.name")
-    form(name="editNameForm" layout="row")
+    form(name="editNameForm" layout="row" novalidate)
       md-input-container
         label Nom
         input(type="text" required ng-model="editedSeason.name")
@@ -29,7 +29,7 @@
           span.subtitle Total des cotisations
           span.value  {{ totalContributions(season) }} €
       .content(ng-if="edit.dates")
-        form(name="editDatesForm" layout="row" )
+        form(name="editDatesForm" layout="row" novalidate)
           mdc-date-picker(flex model="editedSeason.start" label="Début")
           mdc-date-picker(flex model="editedSeason.end" label="Fin").end
         .actions(layout="row")
