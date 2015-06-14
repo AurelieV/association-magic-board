@@ -42,6 +42,7 @@
     "loopback": "^2.8.0",
     "loopback-boot": "^2.6.5",
     "loopback-connector-mongodb": "^1.8.0",
+    "loopback-connector-mysql": "^2.1.1",
     "loopback-datasource-juggler": "^2.7.0",
     "main-bower-files": "2.5.x",
     "pow-mongodb-fixtures": "^0.10.0",
