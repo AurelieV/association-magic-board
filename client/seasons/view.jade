@@ -4,22 +4,22 @@ md-content#seasons(layout="row" layout-align="center")
   md-content.seasons-list(
     ng-if="seasons.length > 0"
     flex="40"
-    layout="column"
-    layout-align="start center"
   )
-    .season.md-whiteframe-z1(
-      ng-repeat="season in seasons | orderBy:['-start']"
-      ng-click="goToSeason(season)"
-      ui-sref-active="selected"
-      ui-sref=".details({id: season.id})"
-      ng-class="{'first': $first, 'last': $last}"
-    )
-      .name {{ season.name }}
-      .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
+    md-list
+      md-list-item.season.md-whiteframe-z1(
+        ng-repeat="season in seasons | orderBy:['-start']"
+        ng-click="goToSeason(season)"
+        ui-sref-active="selected"
+        ui-sref=".details({id: season.id})"
+        ng-class="{'first': $first, 'last': $last}"
+      )
+        .md-list-item-text
+          .name {{ season.name }}
+          .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
 
   md-content.seasons-details(flex="60" ui-view="details")
     | Sélectionner une saison pour afficher les détails
 
-md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
-  span.mdi.mdi-plus
+md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)")
+  md-icon.material-icons(md-font-icon="icon-add")
 

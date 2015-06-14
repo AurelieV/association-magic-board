@@ -9,12 +9,14 @@ md-dialog.mdc-date-picker
       a(ng-click='displayYearSelection()') {{ moment(selected.date).format('YYYY') }}
     // Calendar
     .mdc-date-picker__calendar(ng-if='!yearSelection')
-      .mdc-date-picker__nav
-        md-button.md-fab.md-primary(aria-label='Previous month', ng-click='previousMonth()')
-          .mdi.mdi-chevron-left
-        span {{ activeDate.format('MMMM YYYY') }}
-        md-button.md-fab.md-primary(aria-label='Next month', ng-click='nextMonth()')
-          .mdi.mdi-chevron-right
+      .mdc-date-picker__nav(layout="row" layout-align="start center")
+        md-button.md-fab.md-primary.md-mini(aria-label='Previous month', ng-click='previousMonth()' layout="column" layout-align="center center")
+          md-icon.material-icons.md-icon-fab-mini(md-font-icon="icon-previous")
+        .push(flex)
+        div {{ activeDate.format('MMMM YYYY') }}
+        .push(flex)
+        md-button.md-fab.md-primary.md-mini(aria-label='Next month', ng-click='nextMonth()' layout="column" layout-align="center center")
+          md-icon.material-icons.md-icon-fab-mini(md-font-icon="icon-next")
       .mdc-date-picker__days-of-week
         span(ng-repeat='day in daysOfWeek') {{ day }}
       .mdc-date-picker__days

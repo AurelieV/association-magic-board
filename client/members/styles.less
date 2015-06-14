@@ -6,18 +6,20 @@
   height: 100%;
   overflow: hidden;
   background-color: @background-color;
+  .no-members {
+    background-color: @background-color;
+  }
   .members-list {
     background-color: @background-color;
-    padding-right: 16px + @arrow-size;
     height: 100%;
     overflow: hidden;
     .search {
       height: 24px;
-      padding-right: 20px;
+      padding-right: 16px + @arrow-size;
     }
     md-list {
       overflow: auto;
-      padding-right: 20px;
+      padding-right: 16px + @arrow-size;
     }
     .member {
       background: white;
@@ -60,6 +62,7 @@
     }
   }
   .member-details {
+    padding: 8px 16px;
     max-height: 100%;
     overflow: auto;
     background-color: @background-color;

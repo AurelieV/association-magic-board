@@ -5,66 +5,78 @@ angular.module 'association-magic-board'
 
   $scope.edit =
     name: false
-  $scope.editMember = {}
+  $scope.editedMember = {}
   $scope.editedContribution = {}
+  $scope.underModification = false
 
   $scope.editName = ->
     $scope.edit.name = true
+    $scope.underModification = true
     angular.copy
       lastname: member.lastname
       firstname: member.firstname
-    , $scope.editMember
+    , $scope.editedMember
 
   $scope.editGlobalInfo = ->
     $scope.edit.globalInfo = true
+    $scope.underModification = true
     angular.copy
       dci_number: member.dci_number
       email: member.email
-    , $scope.editMember
+    , $scope.editedMember
 
   $scope.addContribution = (season) ->
     $scope.edit.contribution = true
+    $scope.underModification = true
     season.isAdding = true
     $scope.newContribution =
       date: new Date()
 
   $scope.editContribution = (season) ->
     $scope.edit.contribution = true
-    angular.copy season.contributions[0], $scope.editedContribution
-    #Cast to date
-    $scope.editedContribution.date = new Date $scope.editedContribution.date
+    $scope.underModification = true
     season.isEditing = true
+    angular.copy
+      date: season.contributions[0].date
+      amount: season.contributions[0].amount
+    , $scope.editedContribution
 
   $scope.cancelName = ->
     $scope.edit.name = false
+    $scope.underModification = false
 
   $scope.cancelGlobalInfo = ->
     $scope.edit.globalInfo = false
+    $scope.underModification = false
 
   $scope.cancelAddContribution = (season) ->
     $scope.edit.contribution = false
+    $scope.underModification = false
     season.isAdding = false
 
   $scope.cancelEditContribution = (season) ->
     $scope.edit.contribution = false
+    $scope.underModification = false
     season.isEditing = false
 
   $scope.saveName = (form) ->
     return unless form.$valid
-    Member.prototype$updateAttributes {id: member.id}, $scope.editMember
+    Member.prototype$updateAttributes {id: member.id}, $scope.editedMember
     , (memberUpdated) ->
       angular.copy memberUpdated, member
       $scope.edit.name = false
+      $scope.underModification = false
       $rootScope.$broadcast 'memberUpdated', member
     , (err) ->
       $mdToast.showSimple "Impossible de sauvegarder les changements"
 
   $scope.saveGlobalInfo = (form) ->
     return unless form.$valid
-    Member.prototype$updateAttributes {id: member.id}, $scope.editMember
+    Member.prototype$updateAttributes {id: member.id}, $scope.editedMember
     , (memberUpdated) ->
       angular.copy memberUpdated, member
       $scope.edit.globalInfo = false
+      $scope.underModification = false
       $rootScope.$broadcast 'memberUpdated', member
     , (err) ->
       $mdToast.showSimple "Impossible de sauvegarder les changements"
@@ -76,6 +88,7 @@ angular.module 'association-magic-board'
     , (contribution) ->
       season.contributions.push contribution
       $scope.edit.addContribution = false
+      $scope.underModification = false
       season.isAdding = false
     , (err) ->
       $mdToast.showSimple "Impossible de créer la cotisations"
@@ -84,9 +97,12 @@ angular.module 'association-magic-board'
     return unless form.$valid
     Contribution.prototype$updateAttributes {id: season.contributions[0].id}, $scope.editedContribution
     , (contribution) ->
+      delete contribution.$promise
+      delete contribution.$resolved
       angular.copy contribution, season.contributions[0]
       $scope.edit.contribution = false
-      season.isAdding = false
+      $scope.underModification = false
+      season.isEditing = false
     , (err) ->
       $mdToast.showSimple "Impossible de sauvegarder les changements"
 

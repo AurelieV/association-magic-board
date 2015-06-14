@@ -7,8 +7,8 @@
       layout="column"
     )
       md-input-container.search.md-no-float
-        md-icon.material-icons(md-font-icon="icon-search")
-        input(ng-model="searchText")
+        md-icon.material-icons(md-font-icon="icon-search" aria-label="search")
+        input(ng-model="searchText" aria-label="searchInput")
       md-list(flex)
         md-list-item.member.md-whiteframe-z1(
           ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
@@ -20,6 +20,7 @@
           .md-list-item-text
             .name {{ member.lastname | uppercase }} {{ member.firstname }}
             .dci-number {{ member.dci_number }}
+
     md-content.member-details(flex="60" ui-view="details")
       | Sélectionner un membre pour afficher les détails
 

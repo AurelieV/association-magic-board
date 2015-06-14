@@ -1,7 +1,8 @@
 #season
-  .header-name(layout="row" ng-if="!edit.name" layout-align="start")
-    span.name {{ season.name }}
-    span.mdi.mdi-pencil(ng-click="editName()")
+  .header-name(ng-if="!edit.name" layout="row")
+    .name {{ season.name }}
+    md-icon.material-icons(md-font-icon="icon-create" ng-click="editName()" ng-if="!underModification")
+    .push(flex)
   .header-name(ng-if="edit.name")
     form(name="editNameForm" layout="row")
       md-input-container
@@ -12,15 +13,15 @@
       md-button.md-button(ng-click="cancelName()") Annuler
       md-button.md-button.md-primary(ng-click="saveName(editNameForm)" ng-disabled="!editNameForm.$valid") Enregistrer
 
-  .informations
+  .informations(flex="100" layout="column" layout-align="center start")
     .block.md-whiteframe-z1
       .header-title(layout="row")
         .title(flex) Informations générales
       .content(ng-if="!edit.dates")
-        .info
-          span.subtitle Dates
-          span.value  {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
-          span.mdi.mdi-pencil.edit-dates(ng-click="editDates()")
+        .info.dates(layout="row")
+          .subtitle Dates
+          .value  {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
+          md-icon.material-icons.md-icon-16(md-font-icon="icon-create" ng-click="editDates()")
         .info
           span.subtitle Nombre de membres
           span.value  {{ season.contributions.length }} membres inscrits
@@ -40,12 +41,13 @@
     .block.md-whiteframe-z1
       .header-title(layout="row")
         .title(flex) Membres
-      .content(ng-if="season.contributions.length > 0")
-        .info(ng-repeat="contribution in season.contributions | orderBy:'member.lastname'")
-          span.value
-            a.no-style(ui-sref="members.details({id: contribution.member.id })")
-              | {{ contribution.member.lastname | uppercase }} {{ contribution.member.firstname }}
-            span  ({{ contribution.amount }} € le {{ contribution.date | date:'dd/MM/yyyy' }})
+      md-list.members(ng-if="season.contributions.length > 0")
+        md-list-item(ng-repeat="contribution in season.contributions | orderBy:'member.lastname'" ng-class="{'first': $first, 'last': $last}")
+          md-list-item-text
+            .title
+              a.no-style(ui-sref="members.details({id: contribution.member.id })")
+                | {{ contribution.member.lastname | uppercase }} {{ contribution.member.firstname }}
+            .value  ({{ contribution.amount }} € le {{ contribution.date | date:'dd/MM/yyyy' }})
       .content(ng-if="season.contributions.length == 0")
         .info
           span.value Pas de membres

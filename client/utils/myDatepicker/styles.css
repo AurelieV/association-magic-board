@@ -34,24 +34,6 @@
     cursor: pointer;
     font-style: normal; }
 
-.mdc-date-picker__nav {
-  position: relative; }
-  .mdc-date-picker__nav span {
-    display: block;
-    font-size: 14px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 40px;
-    text-align: center;
-    text-transform: capitalize; }
-  .mdc-date-picker__nav button {
-    position: absolute !important;
-    top: 8px; }
-    .mdc-date-picker__nav button:first-child {
-      left: 16px; }
-    .mdc-date-picker__nav button:last-child {
-      right: 16px; }
-
 .mdc-date-picker__days-of-week {
   padding: 0 16px; }
   .mdc-date-picker__days-of-week span {
@@ -131,10 +113,6 @@
 .mdc-date-picker {
   width: 280px;
   height: 560px; }
-
-.mdc-date-picker__nav button.md-fab {
-  width: 32px;
-  height: 32px; }
 
 .mdc-date-picker md-toolbar {
   min-height: 0; }
