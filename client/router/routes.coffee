@@ -54,6 +54,9 @@ angular.module 'association-magic-board'
       'details@members':
         controller: 'membersNewController'
         templateUrl: 'members/new/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
 
   .state 'seasons',
     url: '/seasons'
