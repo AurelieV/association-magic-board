@@ -1,6 +1,5 @@
 #member
   .header-name(ng-if="!edit.name" layout="row")
-    md-icon.material-icons.margin-right(md-font-icon="icon-previous" ng-click="back()")
     .name {{ member.lastname | uppercase }} {{ member.firstname }}
     md-icon.material-icons.margin-left(md-font-icon="icon-create" ng-click="editName()" ng-if="!underModification")
     .push(flex)

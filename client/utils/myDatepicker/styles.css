@@ -116,3 +116,7 @@
 
 .mdc-date-picker md-toolbar {
   min-height: 0; }
+
+mdc-date-picker .md-button {
+   min-width: 40px;
+}

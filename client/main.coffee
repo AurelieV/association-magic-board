@@ -8,7 +8,7 @@ angular.module('association-magic-board', [
 
   'association-magic-board.templates'
 ])
-.run ($mdSidenav, $rootScope) ->
+.run ($mdSidenav, $rootScope, $state) ->
   moment.locale 'fr'
 
   $rootScope.openMenu = -> $mdSidenav('left').toggle()
@@ -19,6 +19,8 @@ angular.module('association-magic-board', [
 
   $rootScope.$on '$stateChangeSuccess', (event) ->
     $mdSidenav('left').close()
+
+  $rootScope.$state = $state
 
 
 

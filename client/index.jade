@@ -22,6 +22,9 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="associatio
       .md-toolbar-tools
         md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="openMenu")
           md-icon.material-icons(md-font-icon="icon-menu")
+        a(ui-sref="{{ $state.current.data.previous }}" ng-if="$state.current.data.previous")
+          md-button.md-icon-button(aria-label="openMenu")
+            md-icon.material-icons(md-font-icon="icon-previous")
         .title.md-flex Association Magic Board
     md-content.body-content.hero-transition.page-transition(ui-view)
 

@@ -32,6 +32,7 @@ angular.module 'association-magic-board'
     data:
       listSizeSm: 0
       detailsSizeSm: 100
+      previous: 'members'
     resolve:
       member: ($stateParams, Member) ->
         Member.findOne
@@ -57,6 +58,7 @@ angular.module 'association-magic-board'
     data:
       listSizeSm: 0
       detailsSizeSm: 100
+      previous: 'members'
 
   .state 'seasons',
     url: '/seasons'
