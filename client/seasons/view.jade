@@ -1,11 +1,13 @@
-md-content#seasons(layout="row" layout-align="center")
-  md-content.no-seasons(ng-if="seasons.length == 0")
+#seasons.list-with-details(layout="row" layout-align="center")
+  md-content.empty-list(ng-if="seasons.length == 0" flex-gt-sm="40" flex-sm="{{ $state.current.data.listSizeSm }}")
     | Aucune saison
-  md-content.seasons-list(
+  md-content.items-list(
     ng-if="seasons.length > 0"
-    flex="40"
+    flex-sm="{{ $state.current.data.listSizeSm }}"
+    flex-gt-sm="40"
+    layout="column"
   )
-    md-list
+    md-list(flex)
       md-list-item.season.md-whiteframe-z1(
         ng-repeat="season in seasons | orderBy:['-start']"
         ng-click="goToSeason(season)"
@@ -17,9 +19,9 @@ md-content#seasons(layout="row" layout-align="center")
           .name {{ season.name }}
           .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
 
-  md-content.seasons-details(flex="60" ui-view="details")
+  md-content.details(ui-view="details" flex-gt-sm="60" flex-sm="{{ $state.current.data.detailsSizeSm }}")
     | Sélectionner une saison pour afficher les détails
 
-md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)")
+md-button.md-fab.main-button(aria-label="Add", ng-click="add($event)" layout="column" layout-align="center center")
   md-icon.material-icons(md-font-icon="icon-add")
 

@@ -64,6 +64,9 @@ angular.module 'association-magic-board'
     url: '/seasons'
     controller: 'seasonsController'
     templateUrl: 'seasons/view.html'
+    data:
+      listSizeSm: 100
+      detailsSizeSm: 0
     resolve:
       seasons: (Season) ->
         Season.find
@@ -76,6 +79,10 @@ angular.module 'association-magic-board'
       'details@seasons':
         controller: 'seasonsDetailsController'
         templateUrl: 'seasons/details/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'seasons'
     resolve:
       season: (Season, $stateParams) ->
         Season.findOne
@@ -93,5 +100,9 @@ angular.module 'association-magic-board'
       'details@seasons':
         controller: 'seasonsNewController'
         templateUrl: 'seasons/new/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'seasons'
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']

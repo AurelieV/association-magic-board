@@ -25,7 +25,8 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="associatio
         a(ui-sref="{{ $state.current.data.previous }}" ng-if="$state.current.data.previous")
           md-button.md-icon-button(aria-label="openMenu")
             md-icon.material-icons(md-font-icon="icon-previous")
-        .title.md-flex Association Magic Board
+        .title.md-flex(hide-sm) Association Magic Board
+        .title.md-flex(hide-gt-sm) AMB
     md-content.body-content.hero-transition.page-transition(ui-view)
 
     script(src="js/vendor.js")
