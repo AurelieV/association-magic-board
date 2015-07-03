@@ -114,10 +114,5 @@ angular.module 'association-magic-board'
       contribution.seasonId is season.id
     return contrib?.amount
 
-  $scope.hasContributed = (season) ->
-    contrib = _.find $scope.member.contributions, (contribution) ->
-      contribution.seasonId is season.id
-    return contrib?
-
 
 
