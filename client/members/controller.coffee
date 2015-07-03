@@ -4,12 +4,17 @@ angular.module 'association-magic-board'
     $scope.currentSeason = currentSeason[0]
     $scope.$state = $state
 
-    # TODO: Move to router when homepage will be an other page
+    $scope.filter = {}
+    $scope.activeFilter = 'all'
+
     Member.find
       filter:
-        include: 'contributions'
+        include: 'seasons'
     , (members) ->
       $scope.members = members
+      for member in members
+        current = _.find member.seasons, 'id', currentSeason[0].id
+        member.isActive = current?
     , (err) ->
       $mdToast.showSimple "Impossible d'afficher les membres"
 
@@ -26,5 +31,17 @@ angular.module 'association-magic-board'
 
     $scope.$on 'memberAdded', (event, memberAdded) ->
       $scope.members.push memberAdded
+
+    $scope.seeOnlyInactive = ->
+      $scope.filter.isActive = false
+      $scope.activeFilter = 'inactive'
+
+    $scope.seeOnlyActive = ->
+      $scope.filter.isActive = true
+      $scope.activeFilter = 'active'
+
+    $scope.seeAll = ->
+      delete $scope.filter.isActive
+      $scope.activeFilter = 'all'
 
 

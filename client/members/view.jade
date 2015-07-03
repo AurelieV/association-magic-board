@@ -7,17 +7,28 @@
     ng-if="members.length > 0"
     layout="column"
   )
+    .filter(layout="row" layout-align="center")
+      md-button.md-raised(flex ng-click="seeOnlyActive()" ng-class="{'md-primary': activeFilter == 'active'}")
+        md-icon.material-icons(md-font-icon="icon-person")
+      md-button.md-raised(flex ng-click="seeAll()" ng-class="{'md-primary': activeFilter == 'all'}")
+        md-icon.material-icons(md-font-icon="icon-person")
+        md-icon.material-icons(md-font-icon="icon-person-outline")
+      md-button.md-raised(flex ng-click="seeOnlyInactive()" ng-class="{'md-primary': activeFilter == 'inactive'}")
+        md-icon.material-icons(md-font-icon="icon-person-outline")
     md-input-container.search.md-no-float
       md-icon.material-icons(md-font-icon="icon-search" aria-label="search")
-      input(ng-model="searchText" aria-label="searchInput")
+      input(ng-model="filter.$" aria-label="searchInput")
     md-list(flex)
       md-list-item.member.md-whiteframe-z1(
-        ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: {$: searchText}"
+        ng-repeat="member in members | orderBy:['lastname', 'firstname'] | filter: filter"
         ng-click="goToMember(member)"
         ui-sref-active="selected"
         ui-sref=".details({id: member.id})"
         ng-class="{'first': $first, 'last': $last}"
       )
+        .md-avatar
+          md-icon.material-icons.md-icon-avatar(md-font-icon="icon-person" ng-if="member.isActive")
+          md-icon.material-icons.md-icon-avatar(md-font-icon="icon-person-outline" ng-if="!member.isActive")
         .md-list-item-text
           .name {{ member.lastname | uppercase }} {{ member.firstname }}
           .dci-number {{ member.dci_number }}
