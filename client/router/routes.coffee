@@ -19,7 +19,8 @@ angular.module 'association-magic-board'
         Season.find
           filter:
             include: 'members'
-            order: 'start DESC'
+            where:
+              isCurrent: true
             limit: 1
         .$promise
 

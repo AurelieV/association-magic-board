@@ -14,7 +14,7 @@ angular.module 'association-magic-board'
       $scope.members = members
       for member in members
         if currentSeason[0]?
-          current = _.find member.seasons, 'id', currentSeason[0].id
+          current = _.find member.seasons, (season) -> season.isCurrent
           member.isActive = current?
         else
           member.isActive = false
