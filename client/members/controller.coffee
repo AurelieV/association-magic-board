@@ -32,6 +32,11 @@ angular.module 'association-magic-board'
     $scope.$on 'memberAdded', (event, memberAdded) ->
       $scope.members.push memberAdded
 
+    $scope.$on 'contributionAdded', (event, contributionAdded) ->
+      if contributionAdded.seasonId is currentSeason[0].id
+        member = _.find $scope.members, (member) -> member.id is contributionAdded.memberId
+        member.isActive = true if member?
+
     $scope.seeOnlyInactive = ->
       $scope.filter.isActive = false
       $scope.activeFilter = 'inactive'

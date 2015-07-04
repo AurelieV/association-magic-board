@@ -93,6 +93,7 @@ angular.module 'association-magic-board'
       $scope.edit.addContribution = false
       $scope.underModification = false
       season.isAdding = false
+      $rootScope.$broadcast 'contributionAdded', contribution
     , (err) ->
       $mdToast.showSimple "Impossible de créer la cotisations"
 
