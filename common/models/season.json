@@ -15,6 +15,11 @@
     "end": {
       "type": "date",
       "required": true
+    },
+    "isCurrent": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   },
   "validations": [],

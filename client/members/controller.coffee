@@ -13,8 +13,11 @@ angular.module 'association-magic-board'
     , (members) ->
       $scope.members = members
       for member in members
-        current = _.find member.seasons, 'id', currentSeason[0].id
-        member.isActive = current?
+        if currentSeason[0]?
+          current = _.find member.seasons, 'id', currentSeason[0].id
+          member.isActive = current?
+        else
+          member.isActive = false
     , (err) ->
       $mdToast.showSimple "Impossible d'afficher les membres"
 
@@ -33,7 +36,7 @@ angular.module 'association-magic-board'
       $scope.members.push memberAdded
 
     $scope.$on 'contributionAdded', (event, contributionAdded) ->
-      if contributionAdded.seasonId is currentSeason[0].id
+      if currentSeason[0] and (contributionAdded.seasonId is currentSeason[0].id)
         member = _.find $scope.members, (member) -> member.id is contributionAdded.memberId
         member.isActive = true if member?
 
