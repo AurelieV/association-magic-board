@@ -96,7 +96,7 @@ angular.module 'association-magic-board'
                 include: ['member']
         .$promise
   .state 'seasons.current',
-    url: '/details/current'
+    url: '/current'
     views:
       'details@seasons':
         controller: 'seasonsDetailsController'
