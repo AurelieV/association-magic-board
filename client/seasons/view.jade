@@ -7,17 +7,39 @@
     flex-gt-sm="40"
     layout="column"
   )
-    md-list(flex)
+    h3 Saison en cours
+    md-list
       md-list-item.season.md-whiteframe-z1(
-        ng-repeat="season in seasons | orderBy:['-start']"
-        ng-click="goToSeason(season)"
-        ui-sref-active="selected"
-        ui-sref=".details({id: season.id})"
-        ng-class="{'first': $first, 'last': $last}"
+      ng-repeat="season in seasons | orderBy:['-start'] | filter:{isCurrent: true}"
+      ng-click="goToSeason(season)"
+      ui-sref-active="selected"
+      ui-sref=".details({id: season.id})"
+      ng-class="{'first': $first, 'last': $last}"
       )
         .md-list-item-text
           .name {{ season.name }}
           .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
+
+    h3 Autres saisons
+    md-list(flex)
+      md-list-item.season.md-whiteframe-z1(
+        ng-repeat="season in seasons | orderBy:['-start'] | filter:{isCurrent: false}"
+        ui-sref-active="selected"
+        ui-sref=".details({id: season.id})"
+        ng-class="{'first': $first, 'last': $last}"
+        layout="row"
+        layout-align="start center"
+        ng-click="goToSeason(season)"
+      )
+        .md-list-item-text(flex)
+          .name {{ season.name }}
+          .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
+        md-menu(md-position-mode="target-right target" md-offset="0 40")
+          md-button(aria-label="Open menu", ng-click="$event.stopPropagation(); $mdOpenMenu()").md-icon-button
+            md-icon.material-icons.md-menu-origin(md-font-icon="icon-more-vert")
+          md-menu-content(width="4")
+            md-menu-item
+              md-button(ng-click="defineAsCurrent(season, $event)") Définir comme la saison en cours
 
   md-content.details(ui-view="details" flex-gt-sm="60" flex-sm="{{ $state.current.data.detailsSizeSm }}")
     | Sélectionner une saison pour afficher les détails

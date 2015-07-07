@@ -14,8 +14,9 @@ angular.module('association-magic-board', [
   $rootScope.openMenu = -> $mdSidenav('left').toggle()
 
   $rootScope.$on '$stateChangeError', (event, toState, toParams, fromState, fromParams, error) ->
-    console.log 'error', error
-    event.preventDefault()
+    if (error.status is 404) and (toState.name is 'seasons.current')
+      event.preventDefault()
+      $state.go 'seasons'
 
   $rootScope.$on '$stateChangeSuccess', (event) ->
     $mdSidenav('left').close()

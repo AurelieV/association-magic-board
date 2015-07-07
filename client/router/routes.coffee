@@ -19,7 +19,8 @@ angular.module 'association-magic-board'
         Season.find
           filter:
             include: 'members'
-            order: 'start DESC'
+            where:
+              isCurrent: true
             limit: 1
         .$promise
 
@@ -89,6 +90,27 @@ angular.module 'association-magic-board'
           filter:
             where:
               id: $stateParams.id
+            include:
+              relation: 'contributions'
+              scope:
+                include: ['member']
+        .$promise
+  .state 'seasons.current',
+    url: '/details/current'
+    views:
+      'details@seasons':
+        controller: 'seasonsDetailsController'
+        templateUrl: 'seasons/details/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'seasons'
+    resolve:
+      season: (Season) ->
+        Season.findOne
+          filter:
+            where:
+              isCurrent: true
             include:
               relation: 'contributions'
               scope:
