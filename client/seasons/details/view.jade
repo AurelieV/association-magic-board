@@ -14,6 +14,8 @@
       md-button.md-button.md-primary(ng-click="saveName(editNameForm)" ng-disabled="!editNameForm.$valid") Enregistrer
 
   .informations(flex="100" layout="column" layout-align="center start")
+    md-button.md-primary.md-raised(ng-click="defineAsCurrent()" ng-if="!season.isCurrent") Définir comme la saison en cours
+    span(ng-if="season.isCurrent") Saison courrante
     .block.md-whiteframe-z1
       .header-title(layout="row")
         .title(flex) Informations générales

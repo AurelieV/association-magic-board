@@ -1,5 +1,5 @@
 angular.module 'association-magic-board'
-.controller 'seasonsController', ($scope, seasons, $mdToast, $state, Season) ->
+.controller 'seasonsController', ($scope, seasons, $mdToast, $state, Season, $rootScope) ->
   $scope.seasons = seasons
 
   $scope.goToSeason = (season) ->
@@ -16,23 +16,27 @@ angular.module 'association-magic-board'
     return unless season
     angular.copy seasonUpdated, season
 
-  nameCurrent = (season) ->
-    Season.prototype$updateAttributes {id: season.id}, {isCurrent: true}
+  nameCurrent = (seasonToUpdate) ->
+    Season.prototype$updateAttributes {id: seasonToUpdate.id}, {isCurrent: true}
     , (seasonUpdated) ->
-      season.isCurrent = true
+      #Update detail object
+      seasonToUpdate.isCurrent = true
+
+      #Update list object
+      seasonUpdated = _.find $scope.seasons, (season) -> season.id is seasonToUpdate.id
+      seasonUpdated.isCurrent = true if seasonUpdated
+
       $mdToast.showSimple "Saison courante redéfinie"
     , (err) ->
       $mdToast.showSimple "Impossible de sauvegarder les changements"
 
-  $scope.defineAsCurrent = (season, $event) ->
-    $event.stopPropagation()
-    return if season.isCurrent
+  $scope.$on 'defineCurrent', ($event, seasonToUpdate) ->
     current = _.find $scope.seasons, (season) -> season.isCurrent
-    return nameCurrent(season) unless current?
+    return nameCurrent(seasonToUpdate) unless current?
     Season.prototype$updateAttributes {id: current.id}, {isCurrent: false}
     , (seasonUpdated) ->
       current.isCurrent = false
-      nameCurrent(season)
+      nameCurrent(seasonToUpdate)
     , (err) ->
       $mdToast.showSimple "Impossible de sauvegarder les changements"
 

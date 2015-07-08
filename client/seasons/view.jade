@@ -34,12 +34,6 @@
         .md-list-item-text(flex)
           .name {{ season.name }}
           .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
-        md-menu(md-position-mode="target-right target" md-offset="0 40")
-          md-button(aria-label="Open menu", ng-click="$event.stopPropagation(); $mdOpenMenu()").md-icon-button
-            md-icon.material-icons.md-menu-origin(md-font-icon="icon-more-vert")
-          md-menu-content(width="4")
-            md-menu-item
-              md-button(ng-click="defineAsCurrent(season, $event)") Définir comme la saison en cours
 
   md-content.details(ui-view="details" flex-gt-sm="60" flex-sm="{{ $state.current.data.detailsSizeSm }}")
     | Sélectionner une saison pour afficher les détails

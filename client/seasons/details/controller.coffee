@@ -52,6 +52,8 @@ angular.module 'association-magic-board'
       totalContributions = contribution.amount + totalContributions
     return totalContributions
 
+  $scope.defineAsCurrent = ->
+    $rootScope.$broadcast 'defineCurrent', season
 
 
 
