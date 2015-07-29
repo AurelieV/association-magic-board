@@ -37,5 +37,9 @@
   "Contribution": {
     "dataSource": "association-magic-board",
     "public": true
+  },
+  "Tournament": {
+    "dataSource": "association-magic-board",
+    "public": true
   }
 }

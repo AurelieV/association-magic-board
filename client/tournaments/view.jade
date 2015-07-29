@@ -1,0 +1,26 @@
+#tournaments.list-with-details(layout="row" layout-align="center")
+  md-content.empty-list(ng-if="tournaments.length == 0" flex-gt-sm="40" flex-sm="{{ $state.current.data.listSizeSm }}")
+    | Aucun tournoi
+  md-content.items-list(
+    flex-sm="{{ $state.current.data.listSizeSm }}"
+    flex-gt-sm="40"
+    ng-if="tournaments.length > 0"
+    layout="column"
+  )
+    md-list(flex)
+      md-list-item.tournament.md-whiteframe-z1(
+        ng-repeat="tournament in tournaments | orderBy:'-date'"
+        ng-click="goToTournament(tournament)"
+        ui-sref-active="selected"
+        ui-sref=".details({id: tournament.id})"
+        ng-class="{'first': $first, 'last': $last}"
+      )
+        .md-list-item-text
+          .name {{ tournament.name }}
+          .date {{ tournament.date | date:'dd/MM/yyyy' }}
+
+  md-content.details(flex-gt-sm="60" ui-view="details" flex-sm="{{ $state.current.data.detailsSizeSm }}")
+    | Sélectionner un tournoi pour afficher les détails
+
+md-button.md-fab.main-button(ng-if="!('tournaments.new' | isState)", aria-label="Add", ng-click="add()" layout="column" layout-align="center center")
+  md-icon.material-icons(md-font-icon="icon-add")
