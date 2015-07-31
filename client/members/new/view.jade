@@ -8,6 +8,9 @@
       label Nom
       input(type="text" required ng-model="member.lastname")
     md-input-container
+      label Pseudo
+      input(type="text" ng-model="member.pseudo")
+    md-input-container
       label Numéro DCI
       input(type="text" name="dci_number" required ng-model="member.dci_number" dci-input)
       div(ng-messages="add.dci_number.$error" ng-show="add.dci_number.$error.dci_number")

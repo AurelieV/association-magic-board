@@ -5,7 +5,8 @@ angular.module 'association-magic-board'
     $scope.$state = $state
 
     $scope.filter = {}
-    $scope.activeFilter = 'all'
+    $scope.filter.isActive = true
+    $scope.activeFilter = 'active'
 
     Member.find
       filter:

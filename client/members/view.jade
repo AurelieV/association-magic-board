@@ -31,6 +31,7 @@
           md-icon.material-icons.md-icon-avatar(md-font-icon="icon-person-outline" ng-if="!member.isActive")
         .md-list-item-text
           .name {{ member.lastname | uppercase }} {{ member.firstname }}
+          .pseudo(ng-if="member.pseudo") Pseudo: {{ member.pseudo }}
           .dci-number {{ member.dci_number }}
 
   md-content.details(flex-gt-sm="60" ui-view="details" flex-sm="{{ $state.current.data.detailsSizeSm }}")

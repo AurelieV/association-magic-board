@@ -26,6 +26,7 @@ angular.module 'association-magic-board'
     angular.copy
       dci_number: member.dci_number
       email: member.email
+      pseudo: member.pseudo
     , $scope.editedMember
 
   $scope.addContribution = (season) ->

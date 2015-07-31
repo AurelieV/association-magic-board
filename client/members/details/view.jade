@@ -30,6 +30,10 @@
           span.subtitle Email:
           span.value(ng-if="member.email")  {{ member.email }}
           span.value(ng-if="!member.email")  Pas de mail renseigné
+        .info
+          span.subtitle Pseudo:
+          span.value(ng-if="member.pseudo")  {{ member.pseudo }}
+          span.value(ng-if="!member.pseudo")  Pas de pseudo renseigné
       .content(ng-if="edit.globalInfo")
         form(name="editGlobalInfoForm" novalidate)
           md-input-container
@@ -40,6 +44,9 @@
           md-input-container
             label Email
             input(type="email" ng-model="editedMember.email")
+          md-input-container
+            label Pseudo
+            input(type="text" ng-model="editedMember.pseudo")
         .actions(ng-if="edit.globalInfo" layout="row")
           span(flex)
           md-button.md-button(ng-click="cancelGlobalInfo()") Annuler

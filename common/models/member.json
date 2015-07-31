@@ -12,6 +12,10 @@
       "type": "string",
       "required": true
     },
+    "pseudo": {
+      "type": "string",
+      "required": false
+    },
     "dci_number": {
       "type": "number",
       "required": true
