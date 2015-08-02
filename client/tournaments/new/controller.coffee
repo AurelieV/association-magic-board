@@ -14,3 +14,6 @@ angular.module 'association-magic-board'
       $rootScope.$broadcast 'tournamentAdded', tournament
     , (err) ->
       $mdToast.showSimple "Impossible de créer le tournoi"
+
+  $scope.parseFile = ($fileContent) ->
+    $scope.fileParsed = $fileContent

@@ -4,6 +4,9 @@
       label Nom
       input(type="text" required ng-model="tournament.name")
     mdc-date-picker(model="tournament.date" label="Date du tournoi")
+    input(type="file" on-read-file="parseFile($fileContent)")
+    div(ng-if="fileParsed") {{ fileParsed }}
+
     .md-action(layout="row" layout-align="right")
       md-button(ng-click="cancel($event)" flex) Annuler
       md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter
