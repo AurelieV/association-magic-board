@@ -22,6 +22,10 @@ angular.module 'association-magic-board'
     , (err) ->
       $mdToast.showSimple "Impossible d'afficher les membres"
 
+    updateIsActive = (memberId) ->
+      member = _.find $scope.members, (member) -> member.id is memberId
+      member.isActive = true if member?
+
     $scope.goToMember = (member) ->
       $state.go 'members.details', {id: member.id}
 
@@ -32,14 +36,15 @@ angular.module 'association-magic-board'
       member = _.find $scope.members, (member) -> member.id is memberUpdated.id
       return unless member
       angular.copy memberUpdated, member
+      updateIsActive member.id
 
     $scope.$on 'memberAdded', (event, memberAdded) ->
       $scope.members.push memberAdded
+      updateIsActive member.id
 
     $scope.$on 'contributionAdded', (event, contributionAdded) ->
       if currentSeason[0] and (contributionAdded.seasonId is currentSeason[0].id)
-        member = _.find $scope.members, (member) -> member.id is contributionAdded.memberId
-        member.isActive = true if member?
+        member.id contributionAdded.memberId
 
     $scope.seeOnlyInactive = ->
       $scope.filter.isActive = false
