@@ -3,6 +3,7 @@ angular.module 'association-magic-board'
   $scope.cancel = ->
     $state.go 'tournaments'
 
+  x2js = new X2JS()
   $scope.tournament = {}
   $scope.tournament.date = new Date()
 
@@ -14,3 +15,8 @@ angular.module 'association-magic-board'
       $rootScope.$broadcast 'tournamentAdded', tournament
     , (err) ->
       $mdToast.showSimple "Impossible de créer le tournoi"
+
+  $scope.parseFile = ($fileContent) ->
+    json = x2js.xml_str2json $fileContent
+    $scope.results = json.Standings?.Team
+
