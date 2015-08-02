@@ -5,7 +5,8 @@
       input(type="text" required ng-model="tournament.name")
     mdc-date-picker(model="tournament.date" label="Date du tournoi")
     input(type="file" on-read-file="parseFile($fileContent)")
-    div(ng-if="fileParsed") {{ fileParsed }}
+    ul
+      li(ng-repeat="result in results") {{ result._Rank}}: {{ result._DCI }}, {{ result._Name }}
 
     .md-action(layout="row" layout-align="right")
       md-button(ng-click="cancel($event)" flex) Annuler
