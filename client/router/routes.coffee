@@ -116,6 +116,7 @@ angular.module 'association-magic-board'
               scope:
                 include: ['member']
         .$promise
+
   .state 'seasons.new',
     url: '/new'
     views:
@@ -126,5 +127,55 @@ angular.module 'association-magic-board'
       listSizeSm: 0
       detailsSizeSm: 100
       previous: 'seasons'
+
+  .state 'tournaments',
+    url: '/tournaments'
+    controller: 'tournamentsController'
+    templateUrl: 'tournaments/view.html'
+    data:
+      listSizeSm: 100
+      detailsSizeSm: 0
+    resolve:
+      currentSeason: (Season) ->
+        Season.find
+          filter:
+            where:
+              isCurrent: true
+            limit: 1
+        .$promise
+      tournaments: (Tournament) ->
+        Tournament.find
+          filter:
+            order: 'date DESC'
+        .$promise
+
+  .state 'tournaments.details',
+    url: '/details/:id'
+    views:
+      'details@tournaments':
+        controller: 'tournamentsDetailsController'
+        templateUrl: 'tournaments/details/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'tournaments'
+    resolve:
+      tournament: (Tournament, $stateParams) ->
+        Tournament.findOne
+          filter:
+            where:
+              id: $stateParams.id
+        .$promise
+
+  .state 'tournaments.new',
+    url: '/new'
+    views:
+      'details@tournaments':
+        controller: 'tournamentsNewController'
+        templateUrl: 'tournaments/new/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'tournaments'
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']
