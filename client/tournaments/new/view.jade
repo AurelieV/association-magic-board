@@ -4,10 +4,15 @@
       label Nom
       input(type="text" required ng-model="tournament.name")
     mdc-date-picker(model="tournament.date" label="Date du tournoi")
-    input(type="file" on-read-file="parseFile($fileContent)")
-    ul
-      li(ng-repeat="result in results") {{ result._Rank}}: {{ result._DCI }}, {{ result._Name }}
+    input(type="file" on-read-file="parseFile($fileContent)" ng-disabled="isLoading")
+    ul(ng-if="!isLoading")
+      li(ng-repeat="result in results")
+        span.position {{ result._Rank}}:
+        span.member(ng-if="result.member")  {{ result.member.lastname | uppercase }} {{ result.member.firstname }} (membre)
+        span.member(ng-if="!result.member")  {{ result._Name }}, {{ result._DCI }} (non membre)
+    div(layout-align="center" layout="row" ng-if="isLoading")
+      md-progress-circular.md-hue-2(md-mode="indeterminate")
 
     .md-action(layout="row" layout-align="right")
       md-button(ng-click="cancel($event)" flex) Annuler
-      md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid") Ajouter
+      md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid || isLoading || !results") Ajouter

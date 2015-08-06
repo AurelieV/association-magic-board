@@ -165,6 +165,11 @@ angular.module 'association-magic-board'
           filter:
             where:
               id: $stateParams.id
+            include:
+              relation: 'ranks'
+              scope:
+                include: 'member'
+                orderBy: 'position'
         .$promise
 
   .state 'tournaments.new',

@@ -1,0 +1,27 @@
+{
+  "name": "Rank",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "position": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "member": {
+      "type": "belongsTo",
+      "model": "Member"
+    },
+    "tournament": {
+      "type": "belongsTo",
+      "model": "Tournament"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

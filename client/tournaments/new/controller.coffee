@@ -1,5 +1,5 @@
 angular.module 'association-magic-board'
-.controller 'tournamentsNewController', (Tournament, $scope, $mdToast, $state, $rootScope) ->
+.controller 'tournamentsNewController', (Tournament, $scope, $mdToast, $state, $rootScope, Member) ->
   $scope.cancel = ->
     $state.go 'tournaments'
 
@@ -8,8 +8,14 @@ angular.module 'association-magic-board'
   $scope.tournament.date = new Date()
 
   $scope.create = ->
-    Tournament.create $scope.tournament
-    , (tournament) ->
+    ranks = []
+    for result in $scope.results
+      rank = {position: result._Rank}
+      rank.memberId = result.member.id if result.member
+      ranks.push rank
+    Tournament.createWithRanks {tournament: $scope.tournament, ranks: ranks}
+    , (data) ->
+      tournament = data.tournament
       $mdToast.showSimple "#{tournament.name} créé"
       $state.go 'tournaments.details', {id: tournament.id}
       $rootScope.$broadcast 'tournamentAdded', tournament
@@ -17,6 +23,23 @@ angular.module 'association-magic-board'
       $mdToast.showSimple "Impossible de créer le tournoi"
 
   $scope.parseFile = ($fileContent) ->
+    $scope.isLoading = true
+    $scope.loadingError = null
     json = x2js.xml_str2json $fileContent
     $scope.results = json.Standings?.Team
+    async.each $scope.results
+    , (result, next) ->
+      return next() unless result._DCI
+      Member.find
+        filter:
+          where:
+            dci_number: result._DCI
+      , (member) ->
+        result.member = member[0]
+        next()
+      , next
+    , (err) ->
+      $scope.loadingError = err
+      $scope.isLoading = false
+
 

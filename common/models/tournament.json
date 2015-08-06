@@ -16,7 +16,17 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "ranks": {
+      "type": "hasMany",
+      "model": "Rank"
+    },
+    "members": {
+      "type": "hasMany",
+      "model": "Member",
+      "through": "Rank"
+    }
+  },
   "acls": [],
   "methods": []
 }
