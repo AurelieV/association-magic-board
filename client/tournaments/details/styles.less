@@ -1,4 +1,58 @@
 #tournament {
-
+  .header-name {
+    padding: 8px 16px;
+    font-size: 24px;
+    md-icon {
+      margin-left: 8px;
+    }
+    .name {
+      font-weight: bold;
+    }
+  }
+  .informations {
+    .block {
+      margin-top: 16px;
+      background: white;
+      width: 100%;
+      .header-title {
+        padding: 8px 16px;
+        font-size: 18px;
+        md-icon {
+          margin-left: 8px;
+        }
+        .title {
+          height: 18px;
+          font-weight: bold;
+        }
+      }
+      .content {
+        padding: 8px 16px;
+        background: white;
+        .subtitle {
+          font-weight: bold;
+          margin-right: 4px;
+        }
+      }
+      md-list.members {
+        padding: 8px 16px;
+        md-list-item {
+          border-bottom: 1px solid grey;
+          &.last {
+            border-bottom: none;
+          }
+          md-list-item-text {
+            width: 100%;
+            .position {
+              margin-right: 4px;
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
+
 

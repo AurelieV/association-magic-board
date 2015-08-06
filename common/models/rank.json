@@ -9,6 +9,14 @@
     "position": {
       "type": "number",
       "required": true
+    },
+    "_Name": {
+      "type": "string",
+      "required": true
+    },
+    "_DCI": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

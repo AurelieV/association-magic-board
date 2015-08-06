@@ -10,7 +10,7 @@ angular.module 'association-magic-board'
   $scope.create = ->
     ranks = []
     for result in $scope.results
-      rank = {position: result._Rank}
+      rank = {position: result._Rank, _Name: result._Name, _DCI: result._DCI}
       rank.memberId = result.member.id if result.member
       ranks.push rank
     Tournament.createWithRanks {tournament: $scope.tournament, ranks: ranks}

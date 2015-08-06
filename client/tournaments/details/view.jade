@@ -1,3 +1,30 @@
 #tournament
   .header-name(layout="row")
-    .name {{ tournament.name }}, le {{ tournament.date | date:'dd/MM/yyyy' }}
+    .name {{ tournament.name }}
+  .informations(flex="100" layout="column" layout-align="center start")
+    .block.md-whiteframe-z1
+      .header-title(layout="row")
+        .title(flex) Informations générales
+      .content
+        .info(layout="row")
+          span.subtitle Date
+          span.value   {{ tournament.date | date:'dd/MM/yyyy' }}
+        .info
+          span.subtitle Nombre de joueurs
+          span.value   {{ tournament.ranks.length }}
+
+    .block.md-whiteframe-z1
+      .header-title(layout="row")
+        .title(flex) Classement
+      md-list.members(ng-if="tournament.ranks.length > 0")
+        md-list-item(ng-repeat="rank in tournament.ranks | orderBy:'position'" ng-class="{'first': $first, 'last': $last}")
+          md-list-item-text
+            span.position {{ rank.position }}
+            span.value(ng-if="rank.member")
+              a(ui-sref="members.details({id: rank.member.id })")
+                | {{ rank.member.lastname | uppercase }} {{ rank.member.firstname }}
+            span.value(ng-if="!rank.member")
+              | {{ rank._Name | uppercase }} (non membre)
+      .content(ng-if="tournament.ranks.length == 0")
+        .info
+          span.value Non renseigné
