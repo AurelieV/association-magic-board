@@ -1,7 +1,8 @@
 #season
   .header-name(ng-if="!edit.name" layout="row")
+    md-icon.material-icons.status(md-font-icon="icon-brightness_1" ng-class="{'current': season.isCurrent}")
     .name {{ season.name }}
-    md-icon.material-icons(md-font-icon="icon-create" ng-click="editName()" ng-if="!underModification")
+    md-icon.material-icons.edit(md-font-icon="icon-create" ng-click="editName()" ng-if="!underModification")
     .push(flex)
   .header-name(ng-if="edit.name")
     form(name="editNameForm" layout="row" novalidate)
@@ -15,7 +16,6 @@
 
   .informations(flex="100" layout="column" layout-align="center start")
     md-button.md-primary.md-raised(ng-click="defineAsCurrent()" ng-if="!season.isCurrent") Définir comme la saison en cours
-    span(ng-if="season.isCurrent") Saison courrante
     .block.md-whiteframe-z1
       .header-title(layout="row")
         .title(flex) Informations générales

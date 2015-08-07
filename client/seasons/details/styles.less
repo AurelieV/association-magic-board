@@ -1,9 +1,16 @@
 #season {
   .header-name {
-    padding: 8px 16px;
+    padding: 8px 4px;
     font-size: 24px;
-    md-icon {
+    md-icon.edit {
       margin-left: 8px;
+    }
+    md-icon.status {
+      margin-right: 8px;
+      color: red;
+      &.current {
+        color: green;
+      }
     }
     .name {
       font-weight: bold;
