@@ -21,10 +21,10 @@
       "type": "hasMany",
       "model": "Rank"
     },
-    "members": {
-      "type": "hasMany",
-      "model": "Member",
-      "through": "Rank"
+    "season": {
+      "type": "belongsTo",
+      "model": "Season",
+      "foreignKey": ""
     }
   },
   "acls": [],

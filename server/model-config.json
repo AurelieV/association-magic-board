@@ -45,5 +45,13 @@
   "Rank": {
     "dataSource": "association-magic-board",
     "public": true
+  },
+  "SeasonRanking": {
+    "dataSource": "association-magic-board",
+    "public": true
+  },
+  "Participation": {
+    "dataSource": "association-magic-board",
+    "public": true
   }
 }

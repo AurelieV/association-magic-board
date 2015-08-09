@@ -1,11 +1,12 @@
 angular.module 'association-magic-board'
-.controller 'tournamentsNewController', (Tournament, $scope, $mdToast, $state, $rootScope, Member) ->
+.controller 'tournamentsNewController', (currentSeason, Tournament, $scope, $mdToast, $state, $rootScope, Member) ->
   $scope.cancel = ->
     $state.go 'tournaments'
 
   x2js = new X2JS()
   $scope.tournament = {}
   $scope.tournament.date = new Date()
+  $scope.tournament.seasonId = currentSeason[0]?.id
 
   $scope.create = ->
     ranks = []

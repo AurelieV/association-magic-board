@@ -28,7 +28,7 @@ npm install
 
 ## Use pm2
 pm2 startup ubuntu et run le script donné
-pm2 start server.js
+pm2 start server.coffee
 
 ## Install strongloop
 sudo npm install -g strongloop

@@ -182,5 +182,14 @@ angular.module 'association-magic-board'
       listSizeSm: 0
       detailsSizeSm: 100
       previous: 'tournaments'
+    resolve:
+      currentSeason: (Season) ->
+        Season.find
+          filter:
+            include: 'members'
+            where:
+              isCurrent: true
+            limit: 1
+        .$promise
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']

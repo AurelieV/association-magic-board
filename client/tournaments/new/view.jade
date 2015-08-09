@@ -1,5 +1,5 @@
 #new-tournament.md-whiteframe-z1
-  form(name="add" novalidate)
+  form(name="add" novalidate ng-if="tournament.seasonId")
     md-input-container
       label Nom
       input(type="text" required ng-model="tournament.name")
@@ -16,3 +16,8 @@
     .md-action(layout="row" layout-align="right")
       md-button(ng-click="cancel($event)" flex) Annuler
       md-button.md-primary(ng-click="create($event)" flex ng-disabled="!add.$valid || isLoading || !results") Ajouter
+
+    div(ng-if="!tournament.seasonId")
+      span Impossible d'importer un tournoi sans avoir de saison en cours définie.
+      span Veuillez définir une saison en cours
+      a(ui-sref="seasons") ici

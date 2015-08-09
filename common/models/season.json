@@ -32,6 +32,11 @@
     "contributions": {
       "type": "hasMany",
       "model": "Contribution"
+    },
+    "tournaments": {
+      "type": "hasMany",
+      "model": "Tournament",
+      "foreignKey": ""
     }
   },
   "acls": [],
