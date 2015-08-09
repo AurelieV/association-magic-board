@@ -4,6 +4,9 @@
       label Nom
       input(type="text" required ng-model="tournament.name")
     mdc-date-picker(model="tournament.date" label="Date du tournoi")
+    md-input-container
+      label Nombre de point accordé aux membres
+      input(type="number" required ng-model="tournament.leaguePoints")
     input(type="file" on-read-file="parseFile($fileContent)" ng-disabled="isLoading")
     ul(ng-if="!isLoading")
       li(ng-repeat="result in results")

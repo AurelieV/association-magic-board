@@ -1,0 +1,2 @@
+module.exports = (Participation) ->
+  return

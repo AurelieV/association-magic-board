@@ -1,0 +1,42 @@
+{
+  "name": "SeasonRanking",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "leaguePoints": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "masterPoints": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "numberOfParticipations": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "member": {
+      "type": "belongsTo",
+      "model": "Member"
+    },
+    "season": {
+      "type": "belongsTo",
+      "model": "Season"
+    },
+    "participations": {
+      "type": "hasMany",
+      "model": "Participation"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

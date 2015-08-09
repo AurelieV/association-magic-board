@@ -1,6 +1,6 @@
 angular.module 'association-magic-board'
 .controller 'membersController',
-  ($scope, Member, currentSeason, $state) ->
+  ($scope, Member, currentSeason, $state, $mdToast) ->
     $scope.currentSeason = currentSeason[0]
     $scope.$state = $state
 
@@ -44,7 +44,8 @@ angular.module 'association-magic-board'
 
     $scope.$on 'contributionAdded', (event, contributionAdded) ->
       if currentSeason[0] and (contributionAdded.seasonId is currentSeason[0].id)
-        member.id contributionAdded.memberId
+        member = _.find $scope.members, (member) -> member.id is contributionAdded.memberId
+        member.isActive = true if member?
 
     $scope.seeOnlyInactive = ->
       $scope.filter.isActive = false

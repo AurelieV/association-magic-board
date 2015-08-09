@@ -13,6 +13,10 @@
     "date": {
       "type": "date",
       "required": true
+    },
+    "leaguePoints": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],

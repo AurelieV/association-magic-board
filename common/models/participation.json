@@ -1,0 +1,33 @@
+{
+  "name": "Participation",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "leaguePoints": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "masterPoints": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tournament": {
+      "type": "belongsTo",
+      "model": "Tournament"
+    },
+    "seasonRanking": {
+      "type": "belongsTo",
+      "model": "SeasonRanking"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

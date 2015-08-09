@@ -1,0 +1,69 @@
+#ranking {
+  .header-name {
+    padding: 8px 4px;
+    font-size: 24px;
+    md-icon.edit {
+      margin-left: 8px;
+    }
+    md-icon.status {
+      margin-right: 8px;
+      color: red;
+      &.current {
+        color: green;
+      }
+    }
+    .name {
+      font-weight: bold;
+    }
+  }
+  .informations {
+    .info.dates {
+      md-icon {
+        margin-left: 8px;
+      }
+      .value {
+        margin-left: 8px;
+      }
+    }
+    .block {
+      margin-top: 16px;
+      background: white;
+      width: 100%;
+      .header-title {
+        padding: 8px 16px;
+        font-size: 18px;
+        md-icon {
+          margin-left: 8px;
+        }
+        .title {
+          height: 18px;
+          font-weight: bold;
+        }
+      }
+      .content {
+        padding: 8px 16px;
+        background: white;
+        .subtitle {
+          font-weight: bold;
+        }
+      }
+      md-list.members {
+        padding: 8px 16px;
+        md-list-item {
+          border-bottom: 1px solid grey;
+          &.last {
+            border-bottom: none;
+          }
+          md-list-item-text {
+            width: 100%;
+            .title {
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

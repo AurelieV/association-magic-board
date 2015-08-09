@@ -1,0 +1,15 @@
+#ranking
+  .header-name(layout="row")
+    .name Classement Ligue - {{ season.name }}
+    .push(flex)
+
+  .informations(flex="100" layout="column" layout-align="center start")
+    .block.md-whiteframe-z1
+      md-list.members(ng-if="members.length > 0")
+        md-list-item(ng-repeat="member in ::members | orderBy:points" ng-class="{'first': $first, 'last': $last}")
+          md-list-item-text
+            .title {{ $index + 1 }} - {{ member.seasonRankings[0].leaguePoints }} point(s)
+            .value {{ member.lastname | uppercase }} {{ member.firstname }}
+      .content(ng-if="members.length == 0")
+        .info
+          span.value Aucun membres avec des points sur cette saison

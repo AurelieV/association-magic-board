@@ -1,0 +1,27 @@
+#rankings.list-with-details(layout="row" layout-align="center")
+  md-content.empty-list(ng-if="seasons.length == 0" flex-gt-sm="40" flex-sm="{{ $state.current.data.listSizeSm }}")
+    | Aucune saison
+  md-content.items-list(
+    ng-if="seasons.length > 0"
+    flex-sm="{{ $state.current.data.listSizeSm }}"
+    flex-gt-sm="40"
+    layout="column"
+  )
+    h3 Saisons
+    md-list(flex)
+      md-list-item.season.md-whiteframe-z1(
+        ng-repeat="season in seasons | orderBy:['-start']"
+        ui-sref-active="selected"
+        ui-sref=".details({id: season.id})"
+        ng-class="{'first': $first, 'last': $last}"
+        layout="row"
+        layout-align="start center"
+        ng-click="goToRanking(season)"
+      )
+        .md-list-item-text(flex)
+          .name {{ season.name }}
+          .date {{ season.start | date:'dd/MM/yyyy' }} - {{ season.end | date:'dd/MM/yyyy' }}
+
+  md-content.details(ui-view="details" flex-gt-sm="60" flex-sm="{{ $state.current.data.detailsSizeSm }}")
+    | Sélectionner une saison pour afficher le classement
+

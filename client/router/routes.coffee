@@ -192,4 +192,54 @@ angular.module 'association-magic-board'
             limit: 1
         .$promise
 
+  .state 'rankings',
+    url: '/rankings'
+    controller: 'rankingsController'
+    templateUrl: 'rankings/view.html'
+    data:
+      listSizeSm: 100
+      detailsSizeSm: 0
+    resolve:
+      seasons: (Season) ->
+        Season.find
+          filter:
+            order: 'start DESC'
+        .$promise
+      currentSeason: (Season) ->
+        Season.find
+          filter:
+            where:
+              isCurrent: true
+            limit: 1
+        .$promise
+
+  .state 'rankings.details',
+    url: '/details/season/:id'
+    views:
+      'details@rankings':
+        controller: 'rankingsDetailsController'
+        templateUrl: 'rankings/details/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'rankings'
+    resolve:
+      members: (Member, $stateParams) ->
+        Member.find
+          filter:
+            include:
+              relation: 'seasonRankings'
+              scope:
+                include: ['participations']
+                where:
+                  seasonId: $stateParams.id
+        .$promise
+
+      season: (Season, $stateParams) ->
+        Season.findOne
+          filter:
+            where:
+              id: $stateParams.id
+        .$promise
+
   delete $httpProvider.defaults.headers.common['X-Requested-With']
