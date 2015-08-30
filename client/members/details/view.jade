@@ -54,7 +54,7 @@
 
     .block.md-whiteframe-z1
       .header-title
-        .title Saisons
+        .title Cotisations
       md-list.seasons
         md-list-item(ng-repeat="season in seasons | orderBy:'-start'" ng-class="{'first': $first, 'last': $last}")
           md-list-item-text(layout="row" ng-if="season.contributions.length > 0" layout-align="start center" layout-wrap)
@@ -91,4 +91,17 @@
                 md-button.md-button(ng-click="cancelAddContribution(season)") Annuler
                 md-button.md-button.md-primary(ng-click="saveAddContribution(addContributionForm, season)" ng-disabled="!addContributionForm.$valid") Enregistrer
 
-
+    .block.md-whiteframe-z1
+      .header-title
+        .title Classement
+      md-list.ranking
+        md-list-item(ng-repeat="ranking in member.seasonRankings" ng-class="{'first': $first, 'last': $last}")
+          md-list-item-text
+            div(layout="column")
+              .title {{ ranking.season.name }}
+              .info
+                span.subtitle Points master
+                span.value {{ ranking.masterPoints }}
+              .info
+                span.subtitle Points Ligue
+                span.value {{ ranking.leaguePoints }}

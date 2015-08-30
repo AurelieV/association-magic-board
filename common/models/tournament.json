@@ -17,14 +17,20 @@
     "leaguePoints": {
       "type": "number",
       "required": true
+    },
+    "nbOfRounds": {
+      "type": "number",
+      "required": true
+    },
+    "ranks": {
+      "type": [
+        "object"
+      ],
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "ranks": {
-      "type": "hasMany",
-      "model": "Rank"
-    },
     "season": {
       "type": "belongsTo",
       "model": "Season",

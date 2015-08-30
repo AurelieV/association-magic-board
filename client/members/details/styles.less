@@ -51,6 +51,29 @@
           }
         }
       }
+      md-list.ranking {
+        padding: 8px 16px;
+        md-list-item {
+          border-bottom: 1px solid grey;
+          &.last {
+            border-bottom: none;
+          }
+          md-list-item-text {
+            width: 100%;
+            .title {
+              font-weight: bold;
+              opacity: 0.8;
+              font-size: larger;
+            }
+            .subtitle {
+              font-weight: bold;
+            }
+            .value {
+              margin-left: 4px;
+            }
+          }
+        }
+      }
     }
   }
 }

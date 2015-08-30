@@ -2,27 +2,36 @@ async = require('async')
 
 module.exports = (Tournament) ->
   #TODO: use transaction to do this?
-  Tournament.createWithRanks = (tournament, ranks, next) ->
-    Tournament.create tournament, (err, tournament) ->
-      if err
-        return next(err)
-      async.each ranks, (rank, cb) ->
-        tournament.ranks.create rank, (err, rank) ->
+  Tournament.createWithRanks = (tournament, next) ->
+    Tournament.create tournament, (err, tournamentCreated) ->
+      async.each tournamentCreated.ranks, (rank, cb) ->
+        #To not add contribution if no member
+        return cb(null) unless rank.memberId
+        Contribution = Tournament.app.models.Contribution
+        #Create participation only if member is active in currentSeason
+        Contribution.find {where:{memberId: rank.memberId, seasonId: tournamentCreated.seasonId}}, (err, contributions) ->
           return cb(err) if err
-          #To not add contribution if no member
-          return cb(null) unless rank.memberId
-          Contribution = Tournament.app.models.Contribution
-          #Create participation ony if member is active in currentSeason
-          Contribution.find {where:{memberId: rank.memberId, seasonId: tournament.seasonId}}, (err, contributions) ->
-            return cb(err) if err
-            return cb(null) if contributions.length is 0
-            Tournament.createParticipation tournament, rank, cb
+          return cb(null) if contributions.length is 0
+          Tournament.createParticipation tournamentCreated, rank, cb
       , (err) ->
-        return next(err, tournament)
-      if ranks.length is 0
-        return next(null, tournament)
+        return next(err, tournamentCreated)
+      if tournamentCreated.ranks.length is 0
+        return next(null, tournamentCreated)
+
+  Tournament.calculateMasterPoints = (nbRounds, nbPlayers, position) ->
+    coeffJ = 2
+    if nbPlayers >= 24
+      coeffJ = 1.3
+    if nbPlayers < 24 and nbPlayers >= 18
+      coeffJ = 1.5
+
+    g = (nbRounds - coeffJ) / nbRounds
+    result = nbRounds * Math.pow(g, position - 1) * Math.pow(nbPlayers / 2, 0.5)
+
+    return Math.max(Math.round(result), 0)
 
   Tournament.createParticipation = (tournament, rank, next) ->
+    nbPlayers = tournament.ranks.length
     data =
       memberId: rank.memberId
       seasonId: tournament.seasonId
@@ -32,10 +41,13 @@ module.exports = (Tournament) ->
       participation =
         leaguePoints: tournament.leaguePoints
         tournamentId: tournament.id
+        masterPoints: Tournament.calculateMasterPoints(tournament.nbOfRounds, nbPlayers, rank.position)
+        position: rank.position
       seasonRanking.participations.create participation, (err, participation) ->
         return next err if err
         seasonRanking.numberOfParticipations = seasonRanking.numberOfParticipations + 1
         seasonRanking.leaguePoints = seasonRanking.leaguePoints + participation.leaguePoints
+        seasonRanking.masterPoints = seasonRanking.masterPoints + participation.masterPoints
 
         #TODO: put this on a parameter table
         if seasonRanking.numberOfParticipations is 5
@@ -57,9 +69,6 @@ module.exports = (Tournament) ->
     accepts: [
         arg: 'tournament'
         type: 'object'
-      ,
-        arg: 'ranks'
-        type: 'Array(object)'
     ]
     returns:
       arg: 'tournament'

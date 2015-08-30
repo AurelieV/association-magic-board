@@ -14,7 +14,8 @@ angular.module 'association-magic-board'
       rank = {position: result._Rank, _Name: result._Name, _DCI: result._DCI}
       rank.memberId = result.member.id if result.member
       ranks.push rank
-    Tournament.createWithRanks {tournament: $scope.tournament, ranks: ranks}
+    $scope.tournament.ranks = ranks
+    Tournament.createWithRanks {tournament: $scope.tournament}
     , (data) ->
       tournament = data.tournament
       $mdToast.showSimple "#{tournament.name} créé"

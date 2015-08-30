@@ -15,6 +15,11 @@
       "type": "number",
       "required": true,
       "default": 0
+    },
+    "position": {
+      "type": "number",
+      "required": true,
+      "default": 0
     }
   },
   "validations": [],

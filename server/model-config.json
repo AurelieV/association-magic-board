@@ -42,10 +42,6 @@
     "dataSource": "association-magic-board",
     "public": true
   },
-  "Rank": {
-    "dataSource": "association-magic-board",
-    "public": true
-  },
   "SeasonRanking": {
     "dataSource": "association-magic-board",
     "public": true

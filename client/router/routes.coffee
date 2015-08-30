@@ -40,6 +40,10 @@ angular.module 'association-magic-board'
           filter:
             where:
               id: $stateParams.id
+            include:
+              relation: 'seasonRankings'
+              scope:
+                include: 'season'
         .$promise
       seasons: ($stateParams, Season) ->
         Season.find
@@ -165,11 +169,6 @@ angular.module 'association-magic-board'
           filter:
             where:
               id: $stateParams.id
-            include:
-              relation: 'ranks'
-              scope:
-                include: 'member'
-                orderBy: 'position'
         .$promise
 
   .state 'tournaments.new',
@@ -240,6 +239,35 @@ angular.module 'association-magic-board'
           filter:
             where:
               id: $stateParams.id
+        .$promise
+
+  .state 'rankings.current',
+    url: '/current'
+    views:
+      'details@rankings':
+        controller: 'rankingsDetailsController'
+        templateUrl: 'rankings/details/view.html'
+    data:
+      listSizeSm: 0
+      detailsSizeSm: 100
+      previous: 'rankings'
+    resolve:
+      members: (Member, $stateParams) ->
+        Member.find
+          filter:
+            include:
+              relation: 'seasonRankings'
+              scope:
+                include: ['participations']
+                where:
+                  seasonId: $stateParams.id
+        .$promise
+
+      season: (Season) ->
+        Season.findOne
+          filter:
+            where:
+              isCurrent: true
         .$promise
 
   delete $httpProvider.defaults.headers.common['X-Requested-With']

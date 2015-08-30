@@ -1,4 +1,10 @@
 #ranking
+  .ranking-type(layout="row")
+    md-button.md-raised(flex ng-click="changeActiveRanking('league')" ng-class="{'md-primary': activeRankingType == 'league'}")
+      | Ligue
+    md-button.md-raised(flex ng-click="changeActiveRanking('master')" ng-class="{'md-primary': activeRankingType == 'master'}")
+      | Master
+
   .header-name(layout="row")
     .name Classement Ligue - {{ season.name }}
     .push(flex)
@@ -6,9 +12,13 @@
   .informations(flex="100" layout="column" layout-align="center start")
     .block.md-whiteframe-z1
       md-list.members(ng-if="members.length > 0")
-        md-list-item(ng-repeat="member in ::members | orderBy:points" ng-class="{'first': $first, 'last': $last}")
+        md-list-item(ng-repeat="member in members | orderBy:points" ng-class="{'first': $first, 'last': $last}" ng-if="activeRankingType == 'league'")
           md-list-item-text
-            .title {{ $index + 1 }} - {{ member.seasonRankings[0].leaguePoints }} point(s)
+            .title(ng-if="activeRankingType == 'league'") {{ $index + 1 }} - {{ member.seasonRankings[0].leaguePoints }} point(s)
+            .value {{ member.lastname | uppercase }} {{ member.firstname }}
+        md-list-item(ng-repeat="member in members | orderBy:points" ng-class="{'first': $first, 'last': $last}" ng-if="activeRankingType == 'master'")
+          md-list-item-text
+            .title(ng-if="activeRankingType == 'master'") {{ $index + 1 }} - {{ member.seasonRankings[0].masterPoints }} point(s)
             .value {{ member.lastname | uppercase }} {{ member.firstname }}
       .content(ng-if="members.length == 0")
         .info

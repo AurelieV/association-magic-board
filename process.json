@@ -1,0 +1,8 @@
+{
+  "apps" : [{
+    "name"        : "memnarch",
+    "script"      : "server.coffee",
+    "merge_logs"  : true,
+    "cwd"         : "server"
+  }]
+}

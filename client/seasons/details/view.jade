@@ -28,6 +28,9 @@
           span.subtitle Nombre de membres
           span.value  {{ season.contributions.length }} membres inscrits
         .info
+          span.subtitle Classement
+          a.value(ui-sref="rankings.details({id: season.id})")  Voir le classement
+        .info
           span.subtitle Total des cotisations
           span.value  {{ totalContributions(season) }} €
       .content(ng-if="edit.dates")

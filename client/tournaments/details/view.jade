@@ -20,11 +20,7 @@
         md-list-item(ng-repeat="rank in tournament.ranks | orderBy:'position'" ng-class="{'first': $first, 'last': $last}")
           md-list-item-text
             span.position {{ rank.position }}
-            span.value(ng-if="rank.member")
-              a(ui-sref="members.details({id: rank.member.id })")
-                | {{ rank.member.lastname | uppercase }} {{ rank.member.firstname }}
-            span.value(ng-if="!rank.member")
-              | {{ rank._Name | uppercase }} (non membre)
+              | {{ rank._Name | uppercase }}
       .content(ng-if="tournament.ranks.length == 0")
         .info
           span.value Non renseigné

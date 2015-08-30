@@ -1,12 +1,16 @@
 #new-tournament.md-whiteframe-z1
-  form(name="add" novalidate ng-if="tournament.seasonId")
+  form(name="add" novalidate ng-if="tournament.seasonId" layout="column")
     md-input-container
       label Nom
       input(type="text" required ng-model="tournament.name")
     mdc-date-picker(model="tournament.date" label="Date du tournoi")
-    md-input-container
-      label Nombre de point accordé aux membres
-      input(type="number" required ng-model="tournament.leaguePoints")
+    div(layout="row")
+      md-input-container(flex)
+        label Nombre de rondes du tournois
+        input(type="number" required ng-model="tournament.nbOfRounds")
+      md-input-container(flex)
+        label Nombre de points accordés aux membres
+        input(type="number" required ng-model="tournament.leaguePoints")
     input(type="file" on-read-file="parseFile($fileContent)" ng-disabled="isLoading")
     ul(ng-if="!isLoading")
       li(ng-repeat="result in results")
