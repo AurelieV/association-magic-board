@@ -12,6 +12,14 @@
         .info
           span.subtitle Nombre de joueurs
           span.value   {{ tournament.ranks.length }}
+        .info
+          span.subtitle Nombre de rondes
+          span.value  {{ tournament.nbOfRounds }}
+        .info
+          span.subtitle Top8?
+          span.value(ng-if="tournament.hasTop8")  Oui
+          span.value(ng-if="!tournament.hasTop8")  Non
+
 
     .block.md-whiteframe-z1
       .header-title(layout="row")

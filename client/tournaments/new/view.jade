@@ -11,6 +11,8 @@
       md-input-container(flex)
         label Nombre de points accordés aux membres
         input(type="number" required ng-model="tournament.leaguePoints")
+    md-checkbox(ng-model="tournament.hasTop8") Top8?
+    
     input(type="file" on-read-file="parseFile($fileContent)" ng-disabled="isLoading")
     ul(ng-if="!isLoading")
       li(ng-repeat="result in results")
