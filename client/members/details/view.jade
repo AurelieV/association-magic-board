@@ -34,6 +34,12 @@
           span.subtitle Pseudo:
           span.value(ng-if="member.pseudo")  {{ member.pseudo }}
           span.value(ng-if="!member.pseudo")  Pas de pseudo renseigné
+        .info
+          span.subtitle Membre du forum:
+          span.value(ng-if="member.seasonRankingCurrent.isForumMember")  Oui
+          span(ng-if="!member.seasonRankingCurrent.isForumMember")
+            span.value  Non
+            md-button.md-button.md-primary.md-raised(ng-click="forumMember()") Inscrire
       .content(ng-if="edit.globalInfo")
         form(name="editGlobalInfoForm" novalidate)
           md-input-container

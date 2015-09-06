@@ -3,6 +3,8 @@ angular.module 'association-magic-board'
   $scope.member = member
   $scope.seasons = seasons
 
+  $scope.member.seasonRankingCurrent = _.find $scope.member.seasonRankings, (r) -> r.season.isCurrent
+
   $scope.back = ->
     $state.go 'members'
 
@@ -115,6 +117,18 @@ angular.module 'association-magic-board'
     contrib = _.find $scope.member.contributions, (contribution) ->
       contribution.seasonId is season.id
     return contrib?.amount
+
+  $scope.forumMember = ->
+    Member.forumMember {id: member.id}
+    , (seasonRankingCurrent) ->
+      if $scope.member.seasonRankingCurrent?
+        $scope.member.seasonRankingCurrent.isForumMember = true
+      else
+        $scope.member.seasonRankingCurrent = seasonRankingCurrent
+        $scope.member.seasonsRankings.push seasonRankingCurrent
+      $mdToast.showSimple 'Membre considéré comme inscrit au forum'
+    , (err) ->
+      $mdToast.showSimple 'Impossible de modifier les données'
 
 
 

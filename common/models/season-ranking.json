@@ -20,6 +20,11 @@
       "type": "number",
       "required": true,
       "default": 0
+    },
+    "isForumMember": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   },
   "validations": [],
