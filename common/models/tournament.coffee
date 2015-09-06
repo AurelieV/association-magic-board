@@ -18,7 +18,7 @@ module.exports = (Tournament) ->
       if tournamentCreated.ranks.length is 0
         return next(null, tournamentCreated)
 
-  Tournament.calculateMasterPoints = (nbRounds, nbPlayers, position) ->
+  Tournament.calculateMasterPoints = (nbRounds, nbPlayers, position, hasTop8) ->
     coeffJ = 2
     if nbPlayers >= 24
       coeffJ = 1.3
@@ -26,8 +26,15 @@ module.exports = (Tournament) ->
       coeffJ = 1.5
 
     g = (nbRounds - coeffJ) / nbRounds
-    result = nbRounds * Math.pow(g, position - 1) * Math.pow(nbPlayers / 2, 0.5)
-
+    result = 0
+    if not hasTop8
+      result = nbRounds * Math.pow(g, position - 1) * Math.pow(nbPlayers / 2, 0.5)
+    else
+      if (position is 6) or (position is 7) or (position is 8)
+        result = (nbRounds + 1) * Math.pow(g, 4) * Math.pow(nbPlayers / 2, 0.5)
+      else
+        result = (nbRounds + 1) * Math.pow(g, position - 1) * Math.pow(nbPlayers / 2, 0.5)
+          
     return Math.max(Math.round(result), 0)
 
   Tournament.createParticipation = (tournament, rank, next) ->
@@ -41,7 +48,7 @@ module.exports = (Tournament) ->
       participation =
         leaguePoints: tournament.leaguePoints
         tournamentId: tournament.id
-        masterPoints: Tournament.calculateMasterPoints(tournament.nbOfRounds, nbPlayers, rank.position)
+        masterPoints: Tournament.calculateMasterPoints(tournament.nbOfRounds, nbPlayers, rank.position, tournament.hasTop8)
         position: rank.position
       seasonRanking.participations.create participation, (err, participation) ->
         return next err if err
