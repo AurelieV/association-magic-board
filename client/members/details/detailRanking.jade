@@ -1,0 +1,12 @@
+md-dialog(aria-label="Classement détaillé")
+  md-dialog-content
+    ul
+      li(ng-repeat="participation in participations")
+        span {{ participation.tournament.name }}
+        span  - {{ participation.position }} -
+        span  {{ participation[points]}} pts
+      li(ng-if="isForumMember && points === 'leaguePoints'") Inscrit au forum : 10 pts
+      li(ng-if="points === 'leaguePoints'") {{ participations.length }} participations : X pts
+
+    .md-actions
+      md-button.md-primary(ng-click="hide()") OK

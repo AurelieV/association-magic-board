@@ -106,8 +106,15 @@
             div(layout="column")
               .title {{ ranking.season.name }}
               .info
-                span.subtitle Points master
-                span.value {{ ranking.masterPoints }}
+                div
+                  span.subtitle Points master
+                  span.value {{ ranking.masterPoints }}
+                div
+                  md-button.md-primary.md-raised(ng-click="showRankingDetail($event, ranking, 'masterPoints')") Voir le détail
+
               .info
-                span.subtitle Points Ligue
-                span.value {{ ranking.leaguePoints }}
+                div
+                  span.subtitle Points Ligue
+                  span.value {{ ranking.leaguePoints }}
+                div
+                  md-button.md-primary.md-raised(ng-click="showRankingDetail($event, ranking, 'leaguePoints')") Voir le détail

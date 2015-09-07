@@ -1,5 +1,5 @@
 angular.module 'association-magic-board'
-.controller 'membersDetailsController', ($scope, member, Member, $rootScope, Contribution, seasons, $mdToast, $state) ->
+.controller 'membersDetailsController', ($scope, member, Member, $rootScope, Contribution, seasons, $mdToast, $state, SeasonRanking, $mdDialog) ->
   $scope.member = member
   $scope.seasons = seasons
 
@@ -130,5 +130,32 @@ angular.module 'association-magic-board'
     , (err) ->
       $mdToast.showSimple 'Impossible de modifier les données'
 
+  $scope.showRankingDetail = (event, ranking, points) ->
+    SeasonRanking.findById
+      id: ranking.id
+      filter:
+        include:
+          relation: 'participations'
+          scope:
+            include: 'tournament'
+    , (seasonRanking) ->
+      $mdDialog.show
+          templateUrl: 'members/details/detailRanking.html'
+          parent: angular.element(document.body)
+          targetEvent: event
+          clickOutsideToClose:true
+          locals:
+            participations: seasonRanking.participations
+            points: points
+            isForumMember: seasonRanking.isForumMember
+          controller: 'detailRankingCtrl'
+    , (err) ->
+      $mdToast.showSimple 'Impossible d\'afficher les données'
 
+
+.controller 'detailRankingCtrl', ($scope, $mdDialog, participations, points, isForumMember) ->
+  $scope.points = points
+  $scope.participations = participations
+  $scope.hide = $mdDialog.hide
+  $scope.isForumMember = isForumMember
 

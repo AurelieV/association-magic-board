@@ -34,7 +34,7 @@ module.exports = (Tournament) ->
         result = (nbRounds + 1) * Math.pow(g, 4) * Math.pow(nbPlayers / 2, 0.5)
       else
         result = (nbRounds + 1) * Math.pow(g, position - 1) * Math.pow(nbPlayers / 2, 0.5)
-          
+
     return Math.max(Math.round(result), 0)
 
   Tournament.createParticipation = (tournament, rank, next) ->
