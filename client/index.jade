@@ -11,17 +11,7 @@ html(lang="fr", xmlns:ng="http://angularjs.org", id="ng-app", ng-app="associatio
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
 
   body
-    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left")
-      md-content
-        ul(layout="column" layout-align="start center")
-          li(flex)
-            a(ui-sref="members") Membres
-          li(flex)
-            a(ui-sref="seasons.current") Saisons
-          li(flex)
-            a(ui-sref="tournaments") Tournois
-          li(flex)
-            a(ui-sref="rankings.current") Classements
+    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left" menu)
     md-toolbar.mainbar
       .md-toolbar-tools
         md-button.md-icon-button(ng-click="$root.openMenu()" aria-label="openMenu")

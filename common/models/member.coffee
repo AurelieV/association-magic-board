@@ -17,7 +17,6 @@ module.exports = (Member) ->
           if not currentSeasonRanking.isForumMember
             currentSeasonRanking.isForumMember = true
             currentSeasonRanking.leaguePoints = 10 + currentSeasonRanking.leaguePoints
-            console.log currentSeasonRanking
             currentSeasonRanking.save next
             return
           next(null, currentSeasonRanking)

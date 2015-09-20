@@ -1,0 +1,17 @@
+md-content
+  ul(layout="column" layout-align="start center")
+    li(flex)
+      a(ui-sref="home") Page d'accueil
+    li(flex ng-if="loginFactory.isAdmin()")
+      a(ui-sref="members") Membres
+    li(flex ng-if="loginFactory.isAdmin()")
+      a(ui-sref="seasons.current") Saisons
+    li(flex ng-if="loginFactory.isAdmin()")
+      a(ui-sref="tournaments") Tournois
+    li(flex ng-if="loginFactory.isAdmin()")
+      a(ui-sref="rankings.current") Classements
+    li(flex)
+    li(flex ng-if="loginFactory.isAuthenticated()")
+      a(ng-click="loginFactory.disconnect()") Se déconnecter
+    li(flex ng-if="!loginFactory.isAuthenticated()")
+      a(ui-sref="login") Se connecter

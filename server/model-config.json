@@ -49,5 +49,9 @@
   "Participation": {
     "dataSource": "association-magic-board",
     "public": true
+  },
+  "MyUser": {
+    "dataSource": "association-magic-board",
+    "public": true
   }
 }

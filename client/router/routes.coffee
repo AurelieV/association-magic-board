@@ -7,8 +7,22 @@ angular.module 'association-magic-board'
   $urlMatcherFactoryProvider.strictMode(false)
 
   $stateProvider
-  .state 'members',
+  .state 'login',
+    url: '/login'
+    controller: 'loginController'
+    templateUrl: 'login/view.html'
+  .state 'create-login',
+    url: '/create-login'
+    controller: 'createLoginController'
+    templateUrl: 'login/create/view.html'
+
+  .state 'home',
     url: '/'
+    controller: 'homeController'
+    templateUrl: 'home/view.html'
+
+  .state 'members',
+    url: '/members'
     controller: 'membersController'
     templateUrl: 'members/view.html'
     data:
