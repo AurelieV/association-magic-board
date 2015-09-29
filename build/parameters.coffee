@@ -2,7 +2,7 @@ app_path = 'client'
 web_path = 'www'
 
 config =
-  backend_route: '/api'
+  backend_route: '/association-magic-board/api'
   app_path: app_path
   server_path: 'server'
   web_path: web_path
