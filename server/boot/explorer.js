@@ -15,7 +15,7 @@ module.exports = function mountLoopBackExplorer(server) {
 
   var restApiRoot = server.get('restApiRoot');
 
-  var explorerApp = explorer(server, { basePath: '/association-magic-board/api' });
+  var explorerApp = explorer(server, { basePath: '/api' });
   server.use('/explorer', explorerApp);
   server.once('started', function() {
     var baseUrl = server.get('url').replace(/\/$/, '');
