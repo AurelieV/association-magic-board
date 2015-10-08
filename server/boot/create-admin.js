@@ -1,4 +1,4 @@
-module.exports = function createAdmin(app) {
+module.exports = function createAdmin(app, next) {
   var User = app.models.MyUser;
   var Role = app.models.Role;
   var RoleMapping = app.models.RoleMapping;
@@ -19,11 +19,12 @@ module.exports = function createAdmin(app) {
         if (err) throw err;
         if (principals.length > 0) {
           console.log('admin has already role');
-          return;
+          return next();
         }
         adminRole.principals.create(roleMappingData, function(err, principal) {
           console.log('add admin role', principal);
           if (err) throw err;
+          return next()
         });
       });
     });
